@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Cart & Checkout</title>
+<style>
+  :root{--bg:#faf9f6;--dust-rose:#D6A7A1;--olive-gold:#C2B280;--muted:#666;--card:#fff;--maxw:900px}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;background:var(--bg);color:#222}
+  .wrap{max-width:var(--maxw);margin:28px auto;padding:18px}
+  header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+  header h1{font-size:20px;margin:0}
+  .cartbox{background:var(--card);padding:14px;border-radius:10px;box-shadow:0 1px 6px rgba(0,0,0,0.04)}
+  .cart-items{max-height:360px;overflow:auto;margin-bottom:12px}
+  .cart-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0f0f0}
+  .cart-row .label{flex:1}
+  .muted{color:var(--muted);font-size:13px}
+  .summary{padding:8px 0;margin-top:8px;border-top:1px dashed #eee}
+  .total-row{display:flex;justify-content:space-between;align-items:center;font-weight:700;margin-top:8px}
+  .small{font-size:13px;color:#666}
+  .btn{background:var(--dust-rose);color:#fff;border:0;padding:8px 12px;border-radius:8px;cursor:pointer;font-size:14px;box-shadow:0 3px 6px rgba(0,0,0,0.08)}
+  .btn:hover{background:var(--olive-gold);transform:scale(1.02)}
+  .ghost{background:#fff;color:#333;border:1px solid #ddd}
+  .mini{padding:8px 10px;font-size:14px}
+  .thank{background:#eaf7eb;border-radius:8px;padding:18px;margin-top:12px;display:none}
+  form fieldset{border:0;padding:0;margin:0}
+  label.small{display:block;margin-bottom:6px;font-size:13px;color:#444}
+  @media (max-width:880px){ .wrap{margin:14px;padding:12px} }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Your Cart</h1>
+     
+    </header>
+
+    <div class="cartbox">
+      <div class="cart-items" id="cartItemsContainer"></div>
+
+      <div class="summary">
+        <div class="small">Subtotal <span id="subtotalText" style="float:right">Rs. 0</span></div>
+        <div class="small">Delivery charges <span id="deliveryText" style="float:right">Rs. 0</span></div>
+        <div class="total-row">Total <span id="totalText">Rs. 0</span></div>
+      </div>
+
+      <div style="margin-top:8px">
+        <button id="checkoutBtn" class="btn" style="width:100%">Proceed to Checkout</button>
+      </div>
+
+      <div style="margin-top:12px">
+        <button id="clearCartBtn" class="btn ghost" style="width:100%">Clear cart</button>
+      </div>
+      <div style="margin-top:12px">
+  <button id="continueShoppingBtn" class="btn ghost" style="width:100%">← Continue Shopping</button>
+</div>
+
+      <form id="checkoutForm" class="checkout" style="display:none" autocomplete="on">
+        <div style="margin-top:12px" class="small">Please provide shipping details. * required</div>
+
+        <div style="margin-top:8px"><input name="email" type="email" placeholder="Email Address *" required></div>
+        <div style="margin-top:8px"><input name="firstName" type="text" placeholder="First Name *" required></div>
+        <div style="margin-top:8px"><input name="middleName" type="text" placeholder="Middle Name (optional)"></div>
+        <div style="margin-top:8px"><input name="lastName" type="text" placeholder="Last Name *" required></div>
+
+        <div style="display:flex;gap:10px;margin-top:8px">
+          <input name="phone" type="tel" placeholder="Phone Number *" required style="flex:1">
+          <input name="zip" type="text" placeholder="Zip / Postal (optional)" style="width:150px">
+        </div>
+
+        <div style="margin-top:8px"><textarea name="address" rows="2" placeholder="Address Line 1 *" required style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px"></textarea></div>
+        <div style="margin-top:8px"><input name="address2" type="text" placeholder="Address Line 2 (optional)"></div>
+
+        <div style="display:flex;gap:10px;margin-top:8px">
+          <input name="city" type="text" placeholder="City / Town *" required style="flex:1">
+          <input name="state" type="text" placeholder="State / Country *" required style="flex:1">
+        </div>
+
+        <div style="margin-top:8px">
+          <label class="small">Payment method *</label>
+          <select name="paymentMethod" required style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px">
+            <option value="">-- Select --</option>
+            <option value="cod">Cash on Delivery (COD)</option>
+            <option value="jazzcash">Online - JazzCash</option>
+            <option value="easypaisa">Online - EasyPaisa</option>
+            <option value="bank">Online - Bank Transfer</option>
+          </select>
+        </div>
+
+        <div style="margin-top:8px">
+          <label class="small">Billing address</label>
+          <select id="billingChoice" name="billingChoice" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px">
+            <option value="same">Same as shipping</option>
+            <option value="different">Use different billing address</option>
+          </select>
+        </div>
+
+        <div id="billingFields" style="display:none;margin-top:8px">
+          <div style="margin-top:8px"><input name="billingAddress" type="text" placeholder="Billing address" style="width:100%"></div>
+          <div style="display:flex;gap:10px;margin-top:8px">
+            <input name="billingCity" type="text" placeholder="Billing city" style="flex:1">
+            <input name="billingState" type="text" placeholder="Billing state" style="flex:1">
+          </div>
+          <div style="margin-top:8px"><input name="billingPhone" type="tel" placeholder="Billing phone (optional)"></div>
+        </div>
+
+        <div style="margin-top:10px">
+          <button type="submit" class="btn" style="width:100%">Place Order</button>
+        </div>
+      </form>
+
+      <div id="thankYou" class="thank">
+        <h3>Thank you — your order is received</h3>
+        <p>We will contact you via email to confirm and proceed with payment if needed.</p>
+      </div>
+    </div>
+  </div>
+
+<script>
+/* -------- CONFIG: edit these after deploy -------- */
+const deliveryCharge = 250;
+let webhookUrl = "";      // optional: your webhook (Google Apps Script or server) to POST orders
+let webhookSecret = "";   // optional secret you set in the webhook
+/* ------------------------------------------------ */
+
+function formatPKR(n){ return 'Rs. ' + Number(n).toFixed(0); }
+
+/* --- CART --- */
+let cart = JSON.parse(localStorage.getItem('store_cart') || '[]');
+
+function saveCart() {
+  localStorage.setItem('store_cart', JSON.stringify(cart));
+  renderCart();
+}
+
+/* add from URL params if present (e.g. ?add=Oat%20%26%20Honey%20Soap&price=550&id=p1) */
+function addProductFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const name = params.get('add');
+  const priceRaw = params.get('price');
+  const id = params.get('id') || null;
+  if (name && priceRaw) {
+    const price = parseFloat(priceRaw);
+    if (!isNaN(price)) {
+      const existing = cart.find(i => (id && i.id===id) || i.name === name);
+      if (existing) existing.qty += 1;
+      else cart.push({ id, name: decodeURIComponent(name), price: price, qty: 1 });
+      saveCart();
+      // remove params so refresh doesn't add again
+      history.replaceState(null,'', window.location.pathname);
+    }
+  }
+}
+
+function renderCart() {
+  const cartItemsContainer = document.getElementById('cartItemsContainer');
+  cartItemsContainer.innerHTML = '';
+  if (cart.length === 0) {
+    cartItemsContainer.innerHTML = '<div class="muted">Your cart is empty.</div>';
+    document.getElementById('subtotalText').innerText = formatPKR(0);
+    document.getElementById('deliveryText').innerText = formatPKR(0);
+    document.getElementById('totalText').innerText = formatPKR(0);
+    return;
+  }
+
+  let subtotal = 0;
+  cart.forEach((item, idx) => {
+    const itemTotal = item.price * item.qty;
+    subtotal += itemTotal;
+    const row = document.createElement('div');
+    row.className = 'cart-row';
+    row.innerHTML = `
+      <div class="label">
+        <div><strong>${item.name}</strong></div>
+        <div class="muted">${formatPKR(item.price)} × ${item.qty}</div>
+      </div>
+      <div style="text-align:right">
+        <div>${formatPKR(itemTotal)}</div>
+        <div style="margin-top:6px">
+          <button class="ghost mini" onclick="decreaseQty(${idx})" style="margin-right:6px">−</button>
+          <button class="ghost mini" onclick="increaseQty(${idx})">+</button>
+          <div style="height:6px"></div>
+          <button class="ghost mini" onclick="removeItem(${idx})" style="margin-top:6px">Remove</button>
+        </div>
+      </div>
+    `;
+    cartItemsContainer.appendChild(row);
+  });
+
+  document.getElementById('subtotalText').innerText = formatPKR(subtotal);
+  document.getElementById('deliveryText').innerText = formatPKR(deliveryCharge);
+  document.getElementById('totalText').innerText = formatPKR(subtotal + deliveryCharge);
+}
+
+function increaseQty(i){ cart[i].qty++; saveCart(); }
+function decreaseQty(i){ if(cart[i].qty>1) cart[i].qty--; else cart.splice(i,1); saveCart(); }
+function removeItem(i){ cart.splice(i,1); saveCart(); }
+
+/* buttons */
+document.addEventListener('DOMContentLoaded', () => {
+  addProductFromUrl();
+  renderCart();
+
+  document.getElementById('clearCartBtn').addEventListener('click', () => {
+    if(!confirm('Clear cart?')) return; 
+    then(removeAllItems)
+    cart = []; saveCart();
+  });
+
+  document.getElementById('continueShoppingBtn').addEventListener('click', () => {
+  // Go back if there is a history
+  if (window.history.length > 1) {
+    window.history.back();
+  } else {
+    // Fallback: send them to your shop page
+    window.location.href = "https://sites.google.com/view/miaorganic/shop-online";
+  }
+});
+
+  document.getElementById('checkoutBtn').addEventListener('click', () => {
+    if(cart.length===0){ alert('Your cart is empty.'); return; }
+    document.getElementById('checkoutForm').style.display = 'block';
+    document.getElementById('checkoutBtn').scrollIntoView({behavior:'smooth',block:'center'});
+  });
+
+  document.getElementById('billingChoice').addEventListener('change', (e) => {
+    document.getElementById('billingFields').style.display = e.target.value === 'different' ? 'block':'none';
+  });
+
+
+});
+
+/* ORDER / checkout handling */
+function collectOrderData(form){
+  const fd = new FormData(form);
+  const customer = {};
+  fd.forEach((v,k)=> customer[k]=v);
+  const items = cart.map(i=>({ id:i.id, name:i.name, price:i.price, qty:i.qty }));
+  let subtotal = items.reduce((s,it)=>s + it.price*it.qty,0);
+  return { customer, items, subtotal, deliveryCharge, total: subtotal + deliveryCharge, createdAt: (new Date()).toISOString() };
+}
+
+document.getElementById('checkoutForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  if(cart.length===0){ alert('Cart is empty'); return; }
+  const order = collectOrderData(e.target);
+
+  // Save locally for owner records
+  const savedOrders = JSON.parse(localStorage.getItem('store_orders')||'[]');
+  savedOrders.push(order);
+  localStorage.setItem('store_orders', JSON.stringify(savedOrders));
+
+  // Optional: POST to webhook (if you configure webhookUrl above)
+  if(webhookUrl && webhookUrl.length>5){
+    try {
+      await fetch(webhookUrl, {
+        method:'POST',
+        headers:{ 'Content-Type':'application/json' },
+        body: JSON.stringify({ secret: webhookSecret, order })
+      });
+    } catch(err){
+      console.warn('Webhook send failed', err);
+    }
+  }
+
+  // Clear cart and show thank you
+  cart = []; saveCart();
+  document.getElementById('checkoutForm').style.display='none';
+  document.getElementById('thankYou').style.display='block';
+});
+
+/* helper to export orders CSV */
+function ordersToCSV(orders){
+  const header = ["createdAt","email","firstName","lastName","phone","address","city","state","items","subtotal","deliveryCharge","total"];
+  const rows = orders.map(o=>{
+    const items = o.items.map(it=>`${it.name} x${it.qty} (${it.price})`).join(' | ');
+    return [o.createdAt, o.customer.email, o.customer.firstName, o.customer.lastName, o.customer.phone, o.customer.address + (o.customer.address2?(' / '+o.customer.address2):''), o.customer.city, o.customer.state, items, o.subtotal, o.deliveryCharge, o.total];
+  });
+  return [header, ...rows].map(r=>r.map(cell=>`"${String(cell).replace(/"/g,'""')}"`).join(',')).join('\n');
+}
+
+</script>
+</body>
+</html>
