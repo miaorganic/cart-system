@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Orders</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f9;
+      padding: 20px;
+    }
+    h1 {
+      color: #444;
+      margin-bottom: 10px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+      background: #fff;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+      text-align: left;
+    }
+    th {
+      background: #D6A7A1;
+      color: white;
+    }
+    tr:hover {
+      background: #f9f9f9;
+    }
+    button {
+      background: #D6A7A1;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+    button:hover {
+      background: #C2B280;
+    }
+    .empty {
+      background: #fff;
+      padding: 20px;
+      border-radius: 6px;
+      text-align: center;
+      color: #777;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Admin — Orders Management</h1>
+  <p>Only you should access this page. Customers won’t see it.</p>
+  
+  <button id="downloadCsvBtn">Download Orders CSV</button>
+  <div id="ordersContainer"></div>
+
+  <script>
+    // Load orders saved from checkout page
+    const orders = JSON.parse(localStorage.getItem("store_orders")) || [];
+
+    const container = document.getElementById("ordersContainer");
+
+    function renderOrders() {
+      if (orders.length === 0) {
+        container.innerHTML = '<div class="empty">No orders available.</div>';
+        return;
+      }
+
+      let html = `
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Date</th>
+              <th>Customer</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Address</th>
+              <th>Items</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+      orders.forEach((o, i) => {
+        const c = o.customer || {};
+        const itemsList = (o.items || [])
+          .map(it => `${it.name} (x${it.qty})`)
+          .join("<br>");
+        const fullAddress = (c.address || "") + (c.address2 ? " / " + c.address2 : "");
+
+        html += `
+          <tr>
+            <td>${i + 1}</td>
+            <td>${new Date(o.createdAt).toLocaleString()}</td>
+            <td>${c.firstName || ""} ${c.lastName || ""}</td>
+            <td>${c.email || ""}</td>
+            <td>${c.phone || ""}</td>
+            <td>${fullAddress}, ${c.city || ""}, ${c.state || ""}</td>
+            <td>${itemsList}</td>
+            <td><strong>Rs. ${o.total}</strong></td>
+          </tr>
+        `;
+      });
+
+      html += "</tbody></table>";
+      container.innerHTML = html;
+    }
+
+    renderOrders();
+
+    function downloadCSV() {
+      if (orders.length === 0) {
+        alert("No orders available.");
+        return;
+      }
+
+      let csvContent = "data:text/csv;charset=utf-8,";
+      csvContent += "Date,Email,Name,Phone,Address,City,State,Items,Subtotal,Delivery,Total\n";
+
+      orders.forEach(order => {
+        const c = order.customer || {};
+        const itemsList = (order.items || [])
+          .map(it => `${it.name} (x${it.qty})`)
+          .join(" | ");
+        const row = [
+          order.createdAt || "",
+          c.email || "",
+          `${c.firstName || ""} ${c.lastName || ""}`,
+          c.phone || "",
+          (c.address || "") + (c.address2 ? " / " + c.address2 : ""),
+          c.city || "",
+          c.state || "",
+          itemsList,
+          order.subtotal || "",
+          order.deliveryCharge || "",
+          order.total || ""
+        ];
+        csvContent += row.map(v => `"${String(v).replace(/"/g, '""')}"`).join(",") + "\n";
+      });
+
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", "orders.csv");
+      document.body.appendChild(link);
+      link.click();
+    }
+
+    document.getElementById("downloadCsvBtn").addEventListener("click", downloadCSV);
+  </script>
+</body>
+</html>
