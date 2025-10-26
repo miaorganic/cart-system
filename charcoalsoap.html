@@ -19,6 +19,7 @@
   }
   h2 {
     margin: 0 0 12px;
+    color: #000; /* product name black */
   }
 
   /* Pricing styles */
@@ -68,6 +69,34 @@
   .add:hover {
     background: #C2B280;
   }
+
+  /* Description full width */
+  .description {
+    background: #fff;
+    padding: 24px;
+    border-radius: 10px;
+    margin-top: 60px; /* creates 3 line gap */
+    width: calc(100% - 40px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .description h3 {
+    color: #D67B84;
+    margin-bottom: 8px;
+  }
+
+  .description p, .description ul {
+    color: #333;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .description ul {
+    list-style-type: "✔ ";
+    padding-left: 20px;
+  }
+
 </style>
 </head>
 <body>
@@ -103,6 +132,36 @@
     </div>
   </div>
 
+  <!-- Full width description -->
+  <div class="description">
+    <h3>About This Soap</h3>
+    <p>Experience the ultimate detox for your skin with our <strong>Charcoal & Tea Tree Soap</strong>. 
+       Crafted with activated charcoal and pure tea tree essential oil, this bar deeply cleanses, unclogs pores, 
+       and helps control excess oil — leaving your skin feeling fresh, clear, and renewed.</p>
+
+    <h3>Key Benefits</h3>
+    <ul>
+      <li><strong>Deep Detox:</strong> Activated charcoal draws out impurities, dirt, and toxins from the skin.</li>
+      <li><strong>Acne Defense:</strong> Tea tree oil helps fight acne-causing bacteria and soothes inflammation.</li>
+      <li><strong>Oil Control:</strong> Balances sebum levels without over-drying your skin.</li>
+      <li><strong>Gentle Exfoliation:</strong> Smooths rough texture for a clean, matte finish.</li>
+    </ul>
+
+    <h3>Perfect For</h3>
+    <p>Oily, acne-prone, or congested skin — or anyone looking for a refreshing, clarifying cleanse.</p>
+
+    <h3>How to Use</h3>
+    <p>Lather between your hands or on a loofah. Gently massage onto damp skin, then rinse thoroughly. 
+       Follow with your favorite moisturizer for best results.</p>
+
+    <h3>Ingredients</h3>
+    <p>Saponified oils of coconut, olive & castor • Activated charcoal • Tea tree essential oil • Shea butter • Vitamin E • Natural fragrance</p>
+
+    <h3>MIA Organic Promise</h3>
+    <p>Our soaps are handcrafted in small batches using only pure, sustainable ingredients. 
+       100% natural, cruelty-free, and free from parabens, sulfates, and synthetic fragrance.</p>
+  </div>
+
 <script>
 /* ---------- Add to Cart ---------- */
 function addToCartAndGo(){
@@ -111,7 +170,7 @@ function addToCartAndGo(){
   let cart = JSON.parse(localStorage.getItem('store_cart')) || [];
   let existing = cart.find(i => i.name === name);
   if(existing) existing.qty++;
-  else cart.push({ id:'p1', name, price, qty:1 });
+  else cart.push({ id:'p2', name, price, qty:1 });
   localStorage.setItem('store_cart', JSON.stringify(cart));
   window.location.href = './'; // cart page (adjust if needed)
 }
@@ -125,7 +184,7 @@ setInterval(updateViewers, 5000);
 updateViewers();
 
 /* ---------- Stock counter ---------- */
-let stock = 12; // set stock number here
+let stock = 24; // set stock number here
 function updateStock() {
   let text = "";
   if (stock > 20) text = "In stock: " + stock + "+ available";
@@ -138,3 +197,4 @@ updateStock();
 </script>
 </body>
 </html>
+
