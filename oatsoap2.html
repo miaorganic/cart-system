@@ -17,8 +17,10 @@
     margin: auto;
     text-align: center;
   }
+
   h2 {
     margin: 0 0 12px;
+    color: #D67B84; /* warm pink heading */
   }
 
   /* Pricing styles */
@@ -34,7 +36,7 @@
   .new-price {
     font-weight: 700;
     font-size: 20px;
-    color: #c44;
+    color: #C75C6B; /* slightly deeper warm pink */
   }
 
   /* Stock + viewers */
@@ -65,25 +67,28 @@
     border-radius: 8px;
     cursor: pointer;
     margin-top: 12px;
+    font-weight: 600;
   }
   .add:hover {
-    background: #C2B280;
+    background: #C28F8A;
   }
 
   /* Description styling */
   .description {
     text-align: left;
-    margin-top: 20px;
+    margin: 24px auto 0;
     background: #fff;
-    padding: 18px;
+    padding: 22px;
     border-radius: 10px;
     font-size: 14px;
     color: #444;
     line-height: 1.7;
+    max-width: 560px; /* wider description box */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
   }
   .description h3 {
     margin-top: 0;
-    color: #c44;
+    color: #D67B84; /* warm pink headings */
     font-size: 18px;
   }
   .description ul {
@@ -109,12 +114,12 @@
     <!-- ⭐ Rating + Reviews -->
     <div style="display: flex; justify-content: center; margin: 8px 0;">
       <div style="display: flex; align-items: center; gap: 4px; font-size: 20px; line-height: 1;">
-        <span style="color: #D4AF37;">★</span>
-        <span style="color: #D4AF37;">★</span>
-        <span style="color: #D4AF37;">★</span>
-        <span style="color: #D4AF37;">★</span>
+        <span style="color: #D67B84;">★</span>
+        <span style="color: #D67B84;">★</span>
+        <span style="color: #D67B84;">★</span>
+        <span style="color: #D67B84;">★</span>
         <span style="position: relative; display: inline-block; color: #ccc;">
-          <span style="color: #D4AF37; width: 50%; overflow: hidden; position: absolute; top: 0; left: 0;">★</span>
+          <span style="color: #D67B84; width: 50%; overflow: hidden; position: absolute; top: 0; left: 0;">★</span>
           ★
         </span>
         <span style="font-size: 14px; color: #7A7262;">(9)</span>
@@ -129,59 +134,50 @@
       <div class="stock" id="stockStatus">Checking stock...</div>
       <div class="viewers"><span style="font-size:16px;">👁</span> <span id="viewersCount">0</span></div>
     </div>
+  </div>
 
+  <!-- Description Section -->
+  <div class="description">
+    <h3>About this Product</h3>
+    <p>
+      Experience the golden harmony of nature’s most soothing duo — <strong>honey</strong> and <strong>oats</strong>. 
+      Our <strong>Honey & Oats Soap</strong> is a luxurious, handcrafted bar that deeply cleanses, calms, and nourishes your skin, 
+      leaving it feeling silky-smooth, hydrated, and naturally radiant.
+    </p>
 
+    <h3>Key Benefits</h3>
+    <ul>
+      <li><strong>Deep Nourishment:</strong> Honey draws in moisture and keeps your skin hydrated all day.</li>
+      <li><strong>Soothing Exfoliation:</strong> Finely ground oats gently buff away dead skin cells and calm irritation.</li>
+      <li><strong>Balanced Cleansing:</strong> Creamy lather that purifies without stripping natural oils.</li>
+      <li><strong>Natural Oils:</strong> Coconut, olive, and castor oils condition and protect your skin.</li>
+      <li><strong>Soft Natural Scent:</strong> A cozy blend of warm honey and subtle oat sweetness.</li>
+    </ul>
 
+    <h3>Perfect For</h3>
+    <ul>
+      <li>Dry or sensitive skin</li>
+      <li>Everyday gentle cleansing</li>
+      <li>Those who love soft, natural fragrances</li>
+    </ul>
 
+    <h3>How to Use</h3>
+    <p>
+      Lather the bar between your hands or on a loofah. Massage gently onto damp skin and rinse off for soft, supple results.  
+      <em>Tip: Store your soap on a dry surface between uses to extend its life.</em>
+    </p>
 
+    <h3>Ingredients</h3>
+    <p>
+      Saponified oils of coconut, olive & castor • Organic honey • Colloidal oats • Shea butter • Vitamin E • Natural fragrance  
+      <br><strong>Free from:</strong> Sulfates, parabens, silicones, and artificial dyes.
+    </p>
 
-
-
-
-
-    
-    <!-- Description Section -->
-    <div class="description">
-      <h3>About this Product</h3>
-      <p>
-        Experience the golden harmony of nature’s most soothing duo — <strong>honey</strong> and <strong>oats</strong>. 
-        Our <strong>Honey & Oats Soap</strong> is a luxurious, handcrafted bar that deeply cleanses, calms, and nourishes your skin, 
-        leaving it feeling silky-smooth, hydrated, and naturally radiant.
-      </p>
-      <h3>Key Benefits</h3>
-      <ul>
-        <li><strong>Deep Nourishment:</strong> Honey draws in moisture and keeps your skin hydrated all day.</li>
-        <li><strong>Soothing Exfoliation:</strong> Finely ground oats gently buff away dead skin cells and calm irritation.</li>
-        <li><strong>Balanced Cleansing:</strong> Creamy lather that purifies without stripping natural oils.</li>
-        <li><strong>Natural Oils:</strong> Coconut, olive, and castor oils condition and protect your skin.</li>
-        <li><strong>Soft Natural Scent:</strong> A cozy blend of warm honey and subtle oat sweetness.</li>
-      </ul>
-
-      <h3>Perfect For</h3>
-      <ul>
-        <li>Dry or sensitive skin</li>
-        <li>Everyday gentle cleansing</li>
-        <li>Those who love soft, natural fragrances</li>
-      </ul>
-
-      <h3>How to Use</h3>
-      <p>
-        Lather the bar between your hands or on a loofah. Massage gently onto damp skin and rinse off for soft, supple results.  
-        <em>Tip: Store your soap on a dry surface between uses to extend its life.</em>
-      </p>
-
-      <h3>Ingredients</h3>
-      <p>
-        Saponified oils of coconut, olive & castor • Organic honey • Colloidal oats • Shea butter • Vitamin E • Natural fragrance  
-        <br><strong>Free from:</strong> Sulfates, parabens, silicones, and artificial dyes.
-      </p>
-
-      <h3>MIA Organic Promise</h3>
-      <p>
-        Handcrafted in small batches, cruelty-free, and 100% natural — our soaps are pure, purposeful, and planet-friendly.
-        Every bar is a mindful ritual of care, connection, and comfort.
-      </p>
-    </div>
+    <h3>MIA Organic Promise</h3>
+    <p>
+      Handcrafted in small batches, cruelty-free, and 100% natural — our soaps are pure, purposeful, and planet-friendly.
+      Every bar is a mindful ritual of care, connection, and comfort.
+    </p>
   </div>
 
 <script>
@@ -194,7 +190,7 @@ function addToCartAndGo(){
   if(existing) existing.qty++;
   else cart.push({ id:'p1', name, price, qty:1 });
   localStorage.setItem('store_cart', JSON.stringify(cart));
-  window.location.href = './'; // adjust link
+  window.location.href = './';
 }
 
 /* ---------- Live viewers ---------- */
@@ -219,3 +215,4 @@ updateStock();
 </script>
 </body>
 </html>
+
