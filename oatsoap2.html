@@ -7,14 +7,15 @@
 <style>
   body {
     font-family: Segoe UI, Arial;
-    margin: 20px;
+    margin: 0;
     background: #faf9f6;
   }
+
   .card {
     padding: 20px;
     border-radius: 10px;
     max-width: 420px;
-    margin: auto;
+    margin: 40px auto;
     text-align: center;
   }
 
@@ -36,7 +37,7 @@
   .new-price {
     font-weight: 700;
     font-size: 20px;
-    color: #C75C6B; /* slightly deeper warm pink */
+    color: #C75C6B; /* deeper warm pink */
   }
 
   /* Stock + viewers */
@@ -75,16 +76,16 @@
 
   /* Description styling */
   .description {
-    text-align: left;
-    margin: 24px auto 0;
     background: #fff;
-    padding: 22px;
-    border-radius: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 40px 8%;
+    border-radius: 0;
     font-size: 14px;
     color: #444;
     line-height: 1.7;
-    max-width: 560px; /* wider description box */
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    margin-top: 60px; /* space above box */
+    box-shadow: 0 -1px 6px rgba(0,0,0,0.05);
   }
   .description h3 {
     margin-top: 0;
@@ -215,4 +216,5 @@ updateStock();
 </script>
 </body>
 </html>
+
 
