@@ -1,0 +1,211 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Product — Honey & Oats Soap</title>
+<style>
+  body {
+    font-family: Segoe UI, Arial;
+    margin: 20px;
+    background: #faf9f6;
+  }
+  .card {
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 420px;
+    margin: auto;
+    text-align: center;
+  }
+  h2 {
+    margin: 0 0 12px;
+  }
+
+  /* Pricing styles */
+  .price-box {
+    margin-bottom: 12px;
+  }
+  .old-price {
+    color: #999;
+    text-decoration: line-through;
+    margin-right: 8px;
+    font-size: 16px;
+  }
+  .new-price {
+    font-weight: 700;
+    font-size: 20px;
+    color: #c44;
+  }
+
+  /* Stock + viewers */
+  .bottom-info {
+    margin-top: 15px;
+    text-align: left;
+  }
+  .stock {
+    font-weight: bold;
+    margin: 8px 0;
+    color: #333;
+  }
+  .viewers {
+    color: #333;
+    font-size: 14px;
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Add to cart */
+  .add {
+    background: #D6A7A1;
+    color: #fff;
+    border: 0;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 12px;
+  }
+  .add:hover {
+    background: #C2B280;
+  }
+
+  /* Description styling */
+  .description {
+    text-align: left;
+    margin-top: 20px;
+    background: #fff;
+    padding: 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #444;
+    line-height: 1.7;
+  }
+  .description h3 {
+    margin-top: 0;
+    color: #c44;
+    font-size: 18px;
+  }
+  .description ul {
+    padding-left: 18px;
+    margin-top: 6px;
+  }
+  .description li {
+    margin-bottom: 4px;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <!-- Product Name -->
+    <h2>Honey & Oats Soap</h2>
+
+    <!-- Price -->
+    <div class="price-box">
+      <span class="old-price">Rs. 650</span>
+      <span class="new-price">Rs. 585</span>
+    </div>
+
+    <!-- ⭐ Rating + Reviews -->
+    <div style="display: flex; justify-content: center; margin: 8px 0;">
+      <div style="display: flex; align-items: center; gap: 4px; font-size: 20px; line-height: 1;">
+        <span style="color: #D4AF37;">★</span>
+        <span style="color: #D4AF37;">★</span>
+        <span style="color: #D4AF37;">★</span>
+        <span style="color: #D4AF37;">★</span>
+        <span style="position: relative; display: inline-block; color: #ccc;">
+          <span style="color: #D4AF37; width: 50%; overflow: hidden; position: absolute; top: 0; left: 0;">★</span>
+          ★
+        </span>
+        <span style="font-size: 14px; color: #7A7262;">(9)</span>
+      </div>
+    </div>
+
+    <!-- Add to Cart -->
+    <button class="add" onclick="addToCartAndGo()">Add to Cart</button>
+
+    <!-- Left aligned info -->
+    <div class="bottom-info">
+      <div class="stock" id="stockStatus">Checking stock...</div>
+      <div class="viewers"><span style="font-size:16px;">👁</span> <span id="viewersCount">0</span></div>
+    </div>
+
+    <!-- Description Section -->
+    <div class="description">
+      <h3>About this Product</h3>
+      <p>
+        Experience the golden harmony of nature’s most soothing duo — <strong>honey</strong> and <strong>oats</strong>. 
+        Our <strong>Honey & Oats Soap</strong> is a luxurious, handcrafted bar that deeply cleanses, calms, and nourishes your skin, 
+        leaving it feeling silky-smooth, hydrated, and naturally radiant.
+      </p>
+      <h3>Key Benefits</h3>
+      <ul>
+        <li><strong>Deep Nourishment:</strong> Honey draws in moisture and keeps your skin hydrated all day.</li>
+        <li><strong>Soothing Exfoliation:</strong> Finely ground oats gently buff away dead skin cells and calm irritation.</li>
+        <li><strong>Balanced Cleansing:</strong> Creamy lather that purifies without stripping natural oils.</li>
+        <li><strong>Natural Oils:</strong> Coconut, olive, and castor oils condition and protect your skin.</li>
+        <li><strong>Soft Natural Scent:</strong> A cozy blend of warm honey and subtle oat sweetness.</li>
+      </ul>
+
+      <h3>Perfect For</h3>
+      <ul>
+        <li>Dry or sensitive skin</li>
+        <li>Everyday gentle cleansing</li>
+        <li>Those who love soft, natural fragrances</li>
+      </ul>
+
+      <h3>How to Use</h3>
+      <p>
+        Lather the bar between your hands or on a loofah. Massage gently onto damp skin and rinse off for soft, supple results.  
+        <em>Tip: Store your soap on a dry surface between uses to extend its life.</em>
+      </p>
+
+      <h3>Ingredients</h3>
+      <p>
+        Saponified oils of coconut, olive & castor • Organic honey • Colloidal oats • Shea butter • Vitamin E • Natural fragrance  
+        <br><strong>Free from:</strong> Sulfates, parabens, silicones, and artificial dyes.
+      </p>
+
+      <h3>MIA Organic Promise</h3>
+      <p>
+        Handcrafted in small batches, cruelty-free, and 100% natural — our soaps are pure, purposeful, and planet-friendly.
+        Every bar is a mindful ritual of care, connection, and comfort.
+      </p>
+    </div>
+  </div>
+
+<script>
+/* ---------- Add to Cart ---------- */
+function addToCartAndGo(){
+  const name = 'Honey and Oats Soap';
+  const price = 585;
+  let cart = JSON.parse(localStorage.getItem('store_cart')) || [];
+  let existing = cart.find(i => i.name === name);
+  if(existing) existing.qty++;
+  else cart.push({ id:'p1', name, price, qty:1 });
+  localStorage.setItem('store_cart', JSON.stringify(cart));
+  window.location.href = './'; // adjust link
+}
+
+/* ---------- Live viewers ---------- */
+function updateViewers() {
+  const viewers = Math.floor(Math.random() * (18 - 3 + 1)) + 3;
+  document.getElementById("viewersCount").innerText = viewers;
+}
+setInterval(updateViewers, 5000);
+updateViewers();
+
+/* ---------- Stock counter ---------- */
+let stock = 37;
+function updateStock() {
+  let text = "";
+  if (stock > 20) text = "In stock: " + stock + "+ available";
+  else if (stock > 5) text = "Limited stock: only " + stock + " left!";
+  else if (stock > 0) text = "⚠️ Hurry! Only " + stock + " left — running out!";
+  else text = "❌ Out of stock";
+  document.getElementById("stockStatus").innerText = text;
+}
+updateStock();
+</script>
+</body>
+</html>
