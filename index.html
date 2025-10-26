@@ -251,16 +251,13 @@ document.getElementById('checkoutForm').addEventListener('submit', async functio
   savedOrders.push(order);
   localStorage.setItem('store_orders', JSON.stringify(savedOrders));
 
-  // Optional: POST to webhook (if you configure webhookUrl above)
-  if(webhookUrl && webhookUrl.length>5){
-    try {
-      await fetch(webhookUrl, {
-        method:'POST',
-        headers:{ 'Content-Type':'application/json' },
-        body: JSON.stringify({ secret: webhookSecret, order })
-      });
-    } catch(err){
-      console.warn('Webhook send failed', err);
+  // --- Send order to Google Sheet ---
+fetch("https://script.google.com/macros/s/AKfycbw07MUbTljaOPCFOP6_zVMzrffGJK_VM226UIZk5xODgHebFyOhVqj_ozVsLkFDzvRs/exec", {
+  method: "POST",
+  mode: "no-cors",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(order) // 'order' should be your order object
+});
     }
   }
 
