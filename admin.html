@@ -34,26 +34,42 @@
   <button id="downloadCsvBtn">Download Orders CSV</button>
 
   <script>
-    // Example orders data stored in localStorage
-  let orders = JSON.parse(localStorage.getItem("store_orders")) || [];
+    // Load orders saved by checkout page
+    let orders = JSON.parse(localStorage.getItem("store_orders")) || [];
 
-
-    // Function to download orders as CSV
     function downloadCSV() {
       if (orders.length === 0) {
         alert("No orders available.");
         return;
       }
 
-      let csvContent = "data:text/csv;charset=utf-8,Product,Price,Quantity\n";
+      // Build CSV header
+      let csvContent = "data:text/csv;charset=utf-8,";
+      csvContent += "Date,Email,Name,Phone,Address,City,State,Items,Subtotal,Delivery,Total\n";
 
+      // Go through each order
       orders.forEach(order => {
-        order.cart.forEach(item => {
-          csvContent += `${item.name},${item.price},${item.qty}\n`;
-        });
-        csvContent += `Total:,${order.total}\n\n`;
+        const c = order.customer || {};
+        const itemsList = (order.items || [])
+          .map(it => `${it.name} (x${it.qty})`)
+          .join(" | ");
+        const row = [
+          order.createdAt || "",
+          c.email || "",
+          `${c.firstName || ""} ${c.lastName || ""}`,
+          c.phone || "",
+          (c.address || "") + (c.address2 ? " / " + c.address2 : ""),
+          c.city || "",
+          c.state || "",
+          itemsList,
+          order.subtotal || "",
+          order.deliveryCharge || "",
+          order.total || ""
+        ];
+        csvContent += row.map(v => `"${String(v).replace(/"/g, '""')}"`).join(",") + "\n";
       });
 
+      // Create downloadable link
       const encodedUri = encodeURI(csvContent);
       const link = document.createElement("a");
       link.setAttribute("href", encodedUri);
@@ -63,6 +79,10 @@
     }
 
     document.getElementById("downloadCsvBtn").addEventListener("click", downloadCSV);
+  </script>
+</body>
+</html>
+
   </script>
 </body>
 </html>
