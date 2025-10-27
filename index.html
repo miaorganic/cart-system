@@ -120,7 +120,7 @@
 <script>
 /* -------- CONFIG: edit these after deploy -------- */
 const deliveryCharge = 250;
-let webhookUrl = "https://script.google.com/macros/s/AKfycbw07MUbTljaOPCFOP6_zVMzrffGJK_VM226UIZk5xODgHebFyOhVqj_ozVsLkFDzvRs/exec";      // optional: your webhook (Google Apps Script or server) to POST orders
+let webhookUrl = "https://script.google.com/macros/s/AKfycbzZRllAv6Lmx2MV0A9dTHvVTa4zFIH3_AN9htddnd9Q8T4kLub6JSadtLhhjCRcpbBZ/exec";      // optional: your webhook (Google Apps Script or server) to POST orders
 let webhookSecret = "";   // optional secret you set in the webhook
 /* ------------------------------------------------ */
 
@@ -252,7 +252,7 @@ document.getElementById('checkoutForm').addEventListener('submit', async functio
   localStorage.setItem('store_orders', JSON.stringify(savedOrders));
 
   // --- Send order to Google Sheet ---
-fetch("https://script.google.com/macros/s/AKfycbw07MUbTljaOPCFOP6_zVMzrffGJK_VM226UIZk5xODgHebFyOhVqj_ozVsLkFDzvRs/exec", {
+fetch("https://script.google.com/macros/s/AKfycbzZRllAv6Lmx2MV0A9dTHvVTa4zFIH3_AN9htddnd9Q8T4kLub6JSadtLhhjCRcpbBZ/exec", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
