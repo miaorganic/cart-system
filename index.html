@@ -236,10 +236,14 @@ function collectOrderData(form){
   const fd = new FormData(form);
   const customer = {};
   fd.forEach((v,k)=> customer[k]=v);
+
+  console.log("Customer object:", customer);  // add this
+
   const items = cart.map(i=>({ id:i.id, name:i.name, price:i.price, qty:i.qty }));
   let subtotal = items.reduce((s,it)=>s + it.price*it.qty,0);
   return { customer, items, subtotal, deliveryCharge, total: subtotal + deliveryCharge, createdAt: (new Date()).toISOString() };
 }
+
 
 document.getElementById('checkoutForm').addEventListener('submit', async function(e){
   e.preventDefault();
