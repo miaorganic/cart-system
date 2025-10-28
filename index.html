@@ -120,8 +120,8 @@
 <script>
 /* -------- CONFIG: edit these after deploy -------- */
 const deliveryCharge = 250;
-let webhookUrl = "https://script.google.com/macros/s/AKfycby4b0nVTb8p6t6Hs5oUTJYuGlEZaPIB1gx9rClGtcP0Cuu7t7qD1sOiqrG8K3EvzEKt/exec";      // optional: your webhook (Google Apps Script or server) to POST orders
-let webhookSecret = "";   // optional secret you set in the webhook
+let webhookUrl = "https://mia-proxy-brdi3wror-mias-projects-3a54d5c3.vercel.app/api/proxy";  // your deployed Vercel proxy
+let webhookSecret = "MIA_ORGANIC_SECRET";   // same secret as in your proxy
 /* ------------------------------------------------ */
 
 function formatPKR(n){ return 'Rs. ' + Number(n).toFixed(0); }
