@@ -252,11 +252,11 @@ document.getElementById('checkoutForm').addEventListener('submit', async functio
   localStorage.setItem('store_orders', JSON.stringify(savedOrders));
 
   // --- Send order to Google Sheet ---
-fetch(https://mia-proxy-brdi3wror-mias-projects-3a54d5c3.vercel.app/api/proxy", {
+fetch("https://mia-proxy-brdi3wror-mias-projects-3a54d5c3.vercel.app/api/proxy", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
-    secret: "mysecretT",  // same secret as in Apps Script / Vercel env
+    secret: "MIA_ORGANIC_SECRET",  // same secret as in Apps Script / Vercel env
     order: order
   })
 })
