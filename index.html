@@ -73,8 +73,9 @@
         <div style="margin-top:8px"><input name="address2" type="text" placeholder="Address Line 2 (optional)"></div>
 
         <div style="display:flex;gap:10px;margin-top:8px">
-          <input name="city" type="text" placeholder="City / Town *" required style="flex:1">
-          <input name="state" type="text" placeholder="State / Country *" required style="flex:1">
+          <input name="customer.city" type="text" placeholder="City / Town *" required style="flex:1">
+          
+          <input name="customer.state" type="text" placeholder="State / Country *" required style="flex:1">
         </div>
 
         <div style="margin-top:8px">
@@ -82,9 +83,7 @@
           <select name="paymentMethod" required style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px">
             <option value="">-- Select --</option>
             <option value="cod">Cash on Delivery (COD)</option>
-            <option value="jazzcash">Online - JazzCash</option>
-            <option value="easypaisa">Online - EasyPaisa</option>
-            <option value="bank">Online - Bank Transfer</option>
+    
           </select>
         </div>
 
@@ -245,7 +244,7 @@ function collectOrderData(form){
 
   const items = cart.map(i=>({ id:i.id, name:i.name, price:i.price, qty:i.qty }));
   let subtotal = items.reduce((s,it)=>s + it.price*it.qty,0);
-  return { customer, items, subtotal, deliveryCharge, total: subtotal + deliveryCharge, createdAt: (new Date()).toISOString() };
+  return {email, first name, middle name, last name, address, customer.city, customer.state, items, subtotal, deliveryCharge, total: subtotal + deliveryCharge, createdAt: (new Date()).toISOString() };
 }
 
 
