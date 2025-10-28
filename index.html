@@ -236,6 +236,10 @@ function collectOrderData(form){
   const fd = new FormData(form);
   const customer = {};
   fd.forEach((v,k)=> customer[k]=v);
+    
+  // Explicitly add city and state
+  customer.city = form.querySelector('input[name="city"]').value;
+  customer.state = form.querySelector('input[name="state"]').value;
 
   console.log("Customer object:", customer);  // add this
 
