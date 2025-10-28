@@ -70,7 +70,7 @@
         </div>
 
         <div style="margin-top:8px"><textarea name="address" rows="2" placeholder="Address Line 1 *" required style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px"></textarea></div>
-        <div style="margin-top:8px"><input name="address2" type="text" placeholder="Address Line 2 (optional)"></div>
+    
 
         <div style="display:flex;gap:10px;margin-top:8px">
           <input name="customer.city" type="text" placeholder="City / Town *" required style="flex:1">
@@ -244,7 +244,7 @@ function collectOrderData(form){
 
   const items = cart.map(i=>({ id:i.id, name:i.name, price:i.price, qty:i.qty }));
   let subtotal = items.reduce((s,it)=>s + it.price*it.qty,0);
-  return {email, first name, middle name, last name, address, customer.city, customer.state, items, subtotal, deliveryCharge, total: subtotal + deliveryCharge, createdAt: (new Date()).toISOString() };
+  return {email, first name, middle name, last name, address line 1, customer.city, customer.state, items, subtotal, deliveryCharge, total: subtotal + deliveryCharge, createdAt: (new Date()).toISOString() };
 }
 
 
