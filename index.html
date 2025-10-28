@@ -252,17 +252,18 @@ document.getElementById('checkoutForm').addEventListener('submit', async functio
   localStorage.setItem('store_orders', JSON.stringify(savedOrders));
 
   // --- Send order to Google Sheet ---
-fetch("https://script.google.com/macros/s/AKfycby4b0nVTb8p6t6Hs5oUTJYuGlEZaPIB1gx9rClGtcP0Cuu7t7qD1sOiqrG8K3EvzEKt/exec", {
+fetch("https://<your-project>.vercel.app/api/proxy", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
-    secret: "MIA_ORGANIC_SECRET_KEY",  // must match the one in your Apps Script
+    secret: "MIA_ORGANIC_SECRET",  // same secret as in Apps Script / Vercel env
     order: order
   })
 })
-.then(res => res.text())
-.then(result => console.log("✅ Sent to Sheet:", result))
-.catch(err => console.error("❌ Error sending to Sheet:", err));
+.then(r => r.json())
+.then(data => console.log("Sent to sheet:", data))
+.catch(err => console.error("Error sending to sheet:", err));
+
 
   // Clear cart and show thank you
   cart = []; saveCart();
