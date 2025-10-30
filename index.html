@@ -33,6 +33,41 @@
   }
   header h1 { font-size: 24px; margin: 0; }
 
+<!doctype html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Cart & Checkout</title>
+<style>
+  :root {
+    --bg: #faf9f6;
+    --dust-rose: #D6A7A1;
+    --olive-gold: #C2B280;
+    --muted: #666;
+    --card: #fff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+    background: var(--bg);
+    color: #222;
+  }
+  .wrap {
+    width: 100%;
+    margin: 0;
+    padding: 24px;
+  }
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+  }
+  header h1 { font-size: 24px; margin: 0; }
+
 .cartbox {
 background: var(--card);
 padding: 20px;
@@ -124,7 +159,46 @@ display: none;
 
 <script>
 const deliveryCharge = 250;
-const webhookUrl = "https://mia-proxy-brdi3wror-mias-projects-3a54d5c3.vercel.app/api/proxy";
+const webhookUrl = "https://mia-proxy-kix8-qyj8sjtbb-mias-projects-3a54d5c3.vercel.app/api/proxy";
+const webhookSecret = "MIA_ORGANIC_SECRET";
+
+function formatPKR(n){ return 'Rs. ' + Number(n).toFixed(0); }
+let cart = JSON.parse(localStorage.getItem('store_cart') || '[]');
+function saveCart(){ localStorage.setItem('store_cart', JSON.stringify(cart)); renderCart(); }
+
+function renderCart(){
+  const cont = document.getElementById('cartItemsContainer');
+  cont.innerHTML = '';
+  if(cart.length===0){ cont.innerHTML = '<div class="muted">Your cart is empty.</div>'; return; }
+  let subtotal=0;
+  cart.forEach((i,idx)=>{
+    const row=document.createElement('div');
+    row.className='cart-row';
+    const itemTotal=i.price*i.qty; subtotal+=itemTotal;
+    row.innerHTML=`<div><b>${i.name}</b><div class="muted">${formatPKR(i.price)} × ${i.qty}</div></div>
+      <div>${formatPKR(itemTotal)}<div><button class="ghost mini" onclick="decreaseQty(${idx})">−</button>
+      <button class="ghost mini" onclick="increaseQty(${idx})">+</button>
+      <button class="ghost mini" onclick="removeItem(${idx})">Remove</button></div></div>`;
+    cont.appendChild(row);
+  });
+  document.getElementById('subtotalText').innerText=formatPKR(subtotal);
+  document.getElementById('deliveryText').innerText=formatPKR(deliveryCharge);
+  document.getElementById('totalText').innerText=formatPKR(subtotal+deliveryCharge);
+}
+function increaseQty(i){cart[i].qty++;saveCart();}
+function decreaseQty(i){if(cart[i].qty>1)cart[i].qty--;else cart.splice(i,1);saveCart();}
+function removeItem(i){cart.splice(i,1);saveCart();}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  renderCart();
+  document.getElementById('checkoutBtn').onclick=()=>{if(cart.length===0)return alert('Your cart is empty');document.getElementById('checkoutForm').style.display='block';};
+
+
+  </div>
+
+<script>
+const deliveryCharge = 250;
+const webhookUrl = "https://mia-proxy-kix8-qyj8sjtbb-mias-projects-3a54d5c3.vercel.app/api/proxy";
 const webhookSecret = "MIA_ORGANIC_SECRET";
 
 function formatPKR(n){ return 'Rs. ' + Number(n).toFixed(0); }
@@ -166,7 +240,13 @@ function collectOrderData(form){
   const customer={email:f("email"),firstName:f("firstName"),middleName:f("middleName"),lastName:f("lastName"),phone:f("phone"),address:f("address"),city:f("city"),state:f("state"),zip:f("zip"),paymentMethod:f("paymentMethod")};
   const items=cart.map(i=>`${i.name} x${i.qty} (${i.price})`).join(" | ");
   const subtotal=cart.reduce((s,it)=>s+it.price*it.qty,0);
-  return { ...customer, items, subtotal, deliveryCharge, total:subtotal+deliveryCharge, createdAt:new Date().toISOString() };
+  return { 
+  ...customer,
+  items,
+  subtotal,
+  deliveryCharge,
+  total:subtotal+deliveryCharge, 
+  createdAt:new Date().toISOString() };
 }
 
 document.getElementById('checkoutForm').addEventListener('submit',async e=>{
