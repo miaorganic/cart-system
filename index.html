@@ -72,8 +72,9 @@
     
 
         <div style="display:flex;gap:10px;margin-top:8px">
-          <input name="customer.city" type="text" placeholder="City / Town *" required style="flex:1">
-          <input name="customer.state" type="text" placeholder="State / Country *" required style="flex:1">
+         <input name="city" type="text" placeholder="City / Town *" required style="flex:1">
+         <input name="state" type="text" placeholder="State / Country *" required style="flex:1">
+
         </div>
 
         <div style="margin-top:8px">
@@ -233,18 +234,43 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ORDER / checkout handling */
-function collectOrderData(form){ 
-const fd = new FormData(form); 
-const customer = {}; 
-fd.forEach((v,k)=> customer[k]=v); 
-  
-console.log("Customer object:", customer); // add this 
-  
-const items = cart.map(i=>({ id:i.id, name:i.name, price:i.price, qty:i.qty }));
-let subtotal = items.reduce((s,it)=>s + it.price*it.qty,0); 
-return { customer, items, subtotal, 
-deliveryCharge, total: subtotal + deliveryCharge, createdAt: (new Date()).toISOString() };
+function collectOrderData(form) {
+  // explicit collection — more reliable than FormData when fields may be hidden or dynamic
+  const customer = {
+    email: (form.querySelector('input[name="email"]') || {}).value || "",
+    firstName: (form.querySelector('input[name="firstName"]') || {}).value || "",
+    middleName: (form.querySelector('input[name="middleName"]') || {}).value || "",
+    lastName: (form.querySelector('input[name="lastName"]') || {}).value || "",
+    phone: (form.querySelector('input[name="phone"]') || {}).value || "",
+    address: (form.querySelector('textarea[name="address"]') || {}).value || "",
+    address2: (form.querySelector('input[name="address2"]') || {}).value || "",
+    city: (form.querySelector('input[name="city"]') || {}).value || "",
+    state: (form.querySelector('input[name="state"]') || {}).value || "",
+    zip: (form.querySelector('input[name="zip"]') || {}).value || "",
+    paymentMethod: (form.querySelector('select[name="paymentMethod"]') || {}).value || "",
+    billingChoice: (form.querySelector('select[name="billingChoice"]') || {}).value || "",
+    billingAddress: (form.querySelector('input[name="billingAddress"]') || {}).value || "",
+    billingCity: (form.querySelector('input[name="billingCity"]') || {}).value || "",
+    billingState: (form.querySelector('input[name="billingState"]') || {}).value || "",
+    billingPhone: (form.querySelector('input[name="billingPhone"]') || {}).value || ""
+  };
+
+  const items = cart.map(i => ({ id: i.id, name: i.name, price: i.price, qty: i.qty }));
+  const subtotal = items.reduce((s, it) => s + it.price * it.qty, 0);
+
+  // debug - uncomment while testing
+  console.log("CUSTOMER TO SEND:", customer);
+
+  return {
+    customer,
+    items,
+    subtotal,
+    deliveryCharge,
+    total: subtotal + deliveryCharge,
+    createdAt: (new Date()).toISOString()
+  };
 }
+
 
   
 document.getElementById('checkoutForm').addEventListener('submit', async function(e){
