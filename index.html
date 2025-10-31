@@ -247,15 +247,20 @@ document.addEventListener('DOMContentLoaded', () => {
 function collectOrderData(form){
   const f=n=>form.querySelector(`[name="${n}"]`)?.value||"";
   const customer={email:f("email"),firstName:f("firstName"),middleName:f("middleName"),lastName:f("lastName"),phone:f("phone"),address:f("address"),city:f("city"),state:f("state"),zip:f("zip"),paymentMethod:f("paymentMethod")};
-  const items=cart.map(i=>`${i.name} x${i.qty} (${i.price})`).join(" | ");
+  const product = cart.map(i => i.name).join(" | ");
+  const price = cart.map(i => i.price).join(" | ");
+
   const subtotal=cart.reduce((s,it)=>s+it.price*it.qty,0);
   return { 
   ...customer,
-  items,
+  product,
+  price,
   subtotal,
   deliveryCharge,
-  total:subtotal+deliveryCharge, 
-  createdAt:new Date().toISOString() };
+  total: subtotal + deliveryCharge,
+  createdAt: new Date().toISOString()
+};
+
 }
 
 document.getElementById('checkoutForm').addEventListener('submit',async e=>{
