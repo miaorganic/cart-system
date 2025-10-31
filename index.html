@@ -136,7 +136,7 @@ display: none;
 
 /* -------- CONFIG: edit these after deploy -------- */
 const deliveryCharge = 250;
-const webhookUrl = "https://mia-proxy-i7qp-isyvi1x5g-mias-projects-3a54d5c3.vercel.app/api/proxy";
+const webhookUrl = "https://mia-proxy-4la4-f36jhgv9t-mias-projects-3a54d5c3.vercel.app/api/proxy";
 const webhookSecret = "MIA_ORGANIC_SECRET";
 /* ------------------------------------------------ */
 
@@ -245,21 +245,40 @@ document.addEventListener('DOMContentLoaded', () => {
     
 /* ORDER / checkout handling */
 function collectOrderData(form){
-  const f=n=>form.querySelector(`[name="${n}"]`)?.value||"";
-  const customer={email:f("email"),firstName:f("firstName"),middleName:f("middleName"),lastName:f("lastName"),phone:f("phone"),address:f("address"),city:f("city"),state:f("state"),zip:f("zip"),paymentMethod:f("paymentMethod")};
-  const items = cart.map(i => `${i.name} x${i.qty} (${i.price})`).join(" | ");
+  const f = n => form.querySelector(`[name="${n}"]`)?.value || "";
 
-  const subtotal=cart.reduce((s,it)=>s+it.price*it.qty,0);
+  const customer = {
+    email: f("email"),
+    firstName: f("firstName"),
+    middleName: f("middleName"),
+    lastName: f("lastName"),
+    phone: f("phone"),
+    address: f("address"),
+    city: f("city"),
+    state: f("state"),
+    zip: f("zip"),
+    paymentMethod: f("paymentMethod")
+  };
+
+  // ✅ Create proper product and price strings
+  const product = cart.map(i => `${i.name} ×${i.qty}`).join(" | ");
+  const price = cart.map(i => i.price * i.qty).join(" | ");
+
+  // ✅ Calculate subtotal
+  const subtotal = cart.reduce((s, it) => s + it.price * it.qty, 0);
+
+  // ✅ Return flat order data
   return { 
-  ...customer,
-  product,
-  item,
-  deliveryCharge,
-  total: subtotal + deliveryCharge,
-  createdAt: new Date().toISOString()
-};
-
+    ...customer,
+    product,
+    price,
+    subtotal,
+    deliveryCharge,
+    total: subtotal + deliveryCharge,
+    createdAt: new Date().toISOString()
+  };
 }
+
 
 document.getElementById('checkoutForm').addEventListener('submit',async e=>{
   e.preventDefault();
