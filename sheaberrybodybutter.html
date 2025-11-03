@@ -1,0 +1,226 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Product — Shea Berry Body Butter</title>
+<style>
+  body {
+    font-family: Segoe UI, Arial;
+    margin: 0;
+    background: #faf9f6;
+  }
+
+  .card {
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 420px;
+    margin: 40px auto;
+    text-align: center;
+  }
+
+  h2 {
+    margin: 0 0 12px;
+    color: #000;
+  }
+
+  /* Pricing styles */
+  .price-box {
+    margin-bottom: 12px;
+  }
+  .old-price {
+    color: #999;
+    text-decoration: line-through;
+    margin-right: 8px;
+    font-size: 16px;
+  }
+  .new-price {
+    font-weight: 700;
+    font-size: 20px;
+    color: #C75C6B;
+  }
+
+  /* Stock + viewers */
+  .bottom-info {
+    margin-top: 15px;
+    text-align: left;
+  }
+  .stock {
+    font-weight: bold;
+    margin: 8px 0;
+    color: #333;
+  }
+  .viewers {
+    color: #333;
+    font-size: 14px;
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Add to Cart */
+  .add {
+    background: #D6A7A1;
+    color: #fff;
+    border: 0;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 12px;
+    font-weight: 600;
+  }
+  .add:hover {
+    background: #C28F8A;
+  }
+
+  /* Description section */
+  .description {
+    background: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 40px 8%;
+    border-radius: 0;
+    font-size: 14px;
+    color: #444;
+    line-height: 1.7;
+    margin-top: 60px;
+    box-shadow: 0 -1px 6px rgba(0,0,0,0.05);
+  }
+  .description h3 {
+    margin-top: 0;
+    color: #D67B84;
+    font-size: 18px;
+  }
+  .description ul {
+    padding-left: 18px;
+    margin-top: 6px;
+  }
+  .description li {
+    margin-bottom: 4px;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <!-- Product Name -->
+    <h2>Shea Berry Body Butter</h2>
+
+    <!-- Price -->
+    <div class="price-box">
+      <span class="old-price">Rs. 999</span>
+      <span class="new-price">Rs. 899</span>
+    </div>
+
+    <!-- ⭐ Rating + Reviews -->
+    <div style="display: flex; justify-content: center; margin: 8px 0;">
+      <div style="display: flex; align-items: center; gap: 4px; font-size: 20px; line-height: 1;">
+        <span style="color: #D4AF37;">★</span>
+        <span style="color: #D4AF37;">★</span>
+        <span style="color: #D4AF37;">★</span>
+        <span style="color: #D4AF37;">★</span>
+          Shea Berry Body Butter
+    <!-- Half star using clipped span -->
+    <span style="position: relative; display: inline-block; color: #ccc;">
+      <span style="color: #D4AF37; width: 50%; overflow: hidden; position: absolute; top: 0; left: 0;">★</span>
+      ★
+    </span>
+
+
+    <span style="font-size: 14px; color: #7A7262;">(7)</span>
+  </div>
+</div>
+
+        <span style="font-size: 14px; color: #7A7262;">(9)</span>
+      </div>
+    </div>
+
+    <!-- Add to Cart -->
+    <button class="add" onclick="addToCartAndGo()">Add to Cart</button>
+
+    <!-- Left aligned info -->
+    <div class="bottom-info">
+      <div class="stock" id="stockStatus">Checking stock...</div>
+      <div class="viewers"><span style="font-size:16px;">👁</span> <span id="viewersCount">0</span></div>
+    </div>
+  </div>
+
+  <!-- Description Section -->
+  <div class="description">
+    <h3>About this Product</h3>
+    <p>
+      Wrap your skin in a blanket of pure indulgence with our <strong>Shea Berry Body Butter</strong> — a rich, velvety blend of 
+      <strong>shea butter</strong> and <strong>strawberry extract</strong> that deeply hydrates, softens, and restores your skin’s natural glow. 
+      Whipped to perfection, this luscious butter melts instantly, leaving behind a sweet berry scent and a silky, non-greasy finish.
+    </p>
+
+    <h3>Key Benefits</h3>
+    <ul>
+      <li><strong>Intense Moisture:</strong> Deeply nourishes dry skin and locks in hydration for hours.</li>
+      <li><strong>Berry Brightness:</strong> Strawberry extract helps boost radiance and evens out skin tone naturally.</li>
+      <li><strong>Velvety Smoothness:</strong> Rich shea butter softens rough areas and enhances skin elasticity.</li>
+      <li><strong>Antioxidant Boost:</strong> Protects against dryness, dullness, and early signs of aging.</li>
+      <li><strong>Delicate Aroma:</strong> A sweet, creamy scent of berries that lingers beautifully on the skin.</li>
+    </ul>
+
+    <h3>Perfect For</h3>
+    <ul>
+      <li>Dry to very dry skin</li>
+      <li>Daily post-shower moisturization</li>
+      <li>Those who love soft, fruity fragrances</li>
+    </ul>
+
+    <h3>How to Use</h3>
+    <p>
+      Scoop a small amount and massage gently into clean, damp skin until fully absorbed.  
+      <em>Use daily for best results — especially after shower or before bed.</em>
+    </p>
+
+    <h3>Ingredients</h3>
+    <p>
+      • Shea butter • Sweet almond oil • Coconut oil • Strawberry extract • Vitamin E • Natural fragrance  
+      <br><strong>Free from:</strong> Parabens, silicones, mineral oil, and synthetic dyes.
+    </p>
+
+    <h3>MIA Organic Promise</h3>
+    <p>
+      Handcrafted in small batches with pure butters and fruit extracts, our body butters deliver skin-loving nourishment you can feel. 
+      Because at MIA Organic, we believe your body deserves care as soft and natural as your spirit.
+    </p>
+  </div>
+
+<script>
+/* ---------- Add to Cart ---------- */
+function addToCartAndGo(){
+  const name = 'Shea Berry Body Butter';
+  const price = 899;
+  let cart = JSON.parse(localStorage.getItem('store_cart')) || [];
+  let existing = cart.find(i => i.name === name);
+  if(existing) existing.qty++;
+  else cart.push({ id:'p2', name, price, qty:1 });
+  localStorage.setItem('store_cart', JSON.stringify(cart));
+  window.location.href = './'; // cart page (adjust if needed)
+}
+
+/* ---------- Live viewers (3–18) ---------- */
+function updateViewers() {
+  const viewers = Math.floor(Math.random() * (18 - 3 + 1)) + 3;
+  document.getElementById("viewersCount").innerText = viewers;
+}
+setInterval(updateViewers, 5000);
+updateViewers();
+
+/* ---------- Stock counter ---------- */
+let stock = 53; // set stock number here
+function updateStock() {
+  let text = "";
+  if (stock > 20) text = "In stock: " + stock + "+ available";
+  else if (stock > 5) text = "Limited stock: only " + stock + " left!";
+  else if (stock > 0) text = "⚠️ Hurry! Only " + stock + " left — running out!";
+  else text = "❌ Out of stock";
+  document.getElementById("stockStatus").innerText = text;
+}
+updateStock();
+</script>
+</body>
+</html>
