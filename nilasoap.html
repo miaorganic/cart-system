@@ -3,22 +3,25 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Product — Moroccon Nila Whitening Soap</title>
+<title>Product — Moroccan Nila Whitening Soap</title>
 <style>
   body {
     font-family: Segoe UI, Arial;
-    margin: 20px;
-    background: #faf9f6; /* whole page same color */
+    margin: 0;
+    background: #faf9f6;
   }
+
   .card {
     padding: 20px;
     border-radius: 10px;
     max-width: 420px;
-    margin: auto;
-    text-align: center; /* center align main content */
+    margin: 40px auto;
+    text-align: center;
   }
+
   h2 {
     margin: 0 0 12px;
+    color: #000;
   }
 
   /* Pricing styles */
@@ -34,10 +37,10 @@
   .new-price {
     font-weight: 700;
     font-size: 20px;
-    color: #c44;
+    color: #C75C6B;
   }
 
-  /* Stock + viewers (left aligned separately) */
+  /* Stock + viewers */
   .bottom-info {
     margin-top: 15px;
     text-align: left;
@@ -56,6 +59,7 @@
     gap: 6px;
   }
 
+  /* Add to Cart */
   .add {
     background: #D6A7A1;
     color: #fff;
@@ -64,16 +68,43 @@
     border-radius: 8px;
     cursor: pointer;
     margin-top: 12px;
+    font-weight: 600;
   }
   .add:hover {
-    background: #C2B280;
+    background: #C28F8A;
+  }
+
+  /* Description section */
+  .description {
+    background: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 40px 8%;
+    border-radius: 0;
+    font-size: 14px;
+    color: #444;
+    line-height: 1.7;
+    margin-top: 60px;
+    box-shadow: 0 -1px 6px rgba(0,0,0,0.05);
+  }
+  .description h3 {
+    margin-top: 0;
+    color: #D67B84;
+    font-size: 18px;
+  }
+  .description ul {
+    padding-left: 18px;
+    margin-top: 6px;
+  }
+  .description li {
+    margin-bottom: 4px;
   }
 </style>
 </head>
 <body>
   <div class="card">
     <!-- Product Name -->
-    <h2>Moroccon Nila Whitening Soap</h2>
+    <h2>Moroccan Nila Whitening Soap</h2>
 
     <!-- Price -->
     <div class="price-box">
@@ -103,10 +134,55 @@
     </div>
   </div>
 
+  <!-- Description Section -->
+  <div class="description">
+    <h3>About this Product</h3>
+    <p>
+      Inspired by the ancient Moroccan beauty ritual, our <strong>Moroccan Nila Whitening Soap</strong> blends the rare 
+      <strong>Nila powder</strong> with nourishing oils to reveal naturally radiant, even-toned skin. This luxurious bar 
+      gently brightens, refines texture, and restores a youthful glow — leaving your skin soft, luminous, and 
+      irresistibly smooth.
+    </p>
+
+    <h3>Key Benefits</h3>
+    <ul>
+      <li><strong>Natural Brightening:</strong> Moroccan Nila visibly improves dullness and promotes an even, glowing tone.</li>
+      <li><strong>Deep Nourishment:</strong> Enriched with olive, coconut, and castor oils for lasting hydration and softness.</li>
+      <li><strong>Detox & Renewal:</strong> Helps remove impurities, sun damage, and pollution buildup.</li>
+      <li><strong>Soothing Cleanse:</strong> Calms irritation and refreshes skin with a cool, powdery finish.</li>
+      <li><strong>Traditional Luxury:</strong> Inspired by Moroccan spa rituals for luminous, healthy skin.</li>
+    </ul>
+
+    <h3>Perfect For</h3>
+    <ul>
+      <li>Dull or uneven skin tone</li>
+      <li>Sun-exposed or tired skin</li>
+      <li>Brightening and radiance-boosting skincare routines</li>
+    </ul>
+
+    <h3>How to Use</h3>
+    <p>
+      Lather the soap between your palms or on a loofah, apply to damp skin, and rinse off.  
+      <em>For best results, use daily and store on a dry surface between uses.</em>
+    </p>
+
+    <h3>Ingredients</h3>
+    <p>
+      Saponified oils of coconut, olive & castor • Moroccan Nila (Indigofera tinctoria)  • Glycerine • Vitamin E • Natural fragrance  
+      <br><strong>Free from:</strong> Parabens, sulfates, silicones, and artificial whitening agents.
+    </p>
+
+    <h3>MIA Organic Promise</h3>
+    <p>
+      Each bar is handcrafted with care using authentic Moroccan Nila and clean, cruelty-free ingredients — 
+      giving your skin the pure glow of ancient beauty secrets reborn.
+    </p>
+  </div>
+
 <script>
 /* ---------- Add to Cart ---------- */
 function addToCartAndGo(){
-  const name = 'Moroccon Nila Whitening Soap';
+  const name = 'Moroccan Nila Whitening Soap';
   const price = 675;
   let cart = JSON.parse(localStorage.getItem('store_cart')) || [];
   let existing = cart.find(i => i.name === name);
@@ -125,7 +201,7 @@ setInterval(updateViewers, 5000);
 updateViewers();
 
 /* ---------- Stock counter ---------- */
-let stock = 12; // set stock number here
+let stock = 19; // set stock number here
 function updateStock() {
   let text = "";
   if (stock > 20) text = "In stock: " + stock + "+ available";
@@ -138,3 +214,4 @@ updateStock();
 </script>
 </body>
 </html>
+
