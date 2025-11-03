@@ -3,51 +3,59 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Product — Licorice (Mulethi), Almond & Goatmilk Soap 
-</title>
+<title>Product — Licorice (Mulethi), Almond & Goatmilk Soap</title>
 <style>
   body {
     font-family: Segoe UI, Arial;
-    margin: 20px;
-    background: #faf9f6; /* whole page same color */
+    margin: 0;
+    background: #faf9f6;
+    padding: 20px;
+    overflow-x: hidden;
   }
+
   .card {
     padding: 20px;
     border-radius: 10px;
     max-width: 420px;
     margin: auto;
-    text-align: center; /* center align main content */
+    text-align: center;
   }
+
   h2 {
     margin: 0 0 12px;
+    color: #000;
   }
 
   /* Pricing styles */
   .price-box {
     margin-bottom: 12px;
   }
+
   .old-price {
     color: #999;
     text-decoration: line-through;
     margin-right: 8px;
     font-size: 16px;
   }
+
   .new-price {
     font-weight: 700;
     font-size: 20px;
     color: #c44;
   }
 
-  /* Stock + viewers (left aligned separately) */
+  /* Stock + viewers */
   .bottom-info {
     margin-top: 15px;
     text-align: left;
   }
+
   .stock {
     font-weight: bold;
     margin: 8px 0;
     color: #333;
   }
+
   .viewers {
     color: #333;
     font-size: 14px;
@@ -66,16 +74,44 @@
     cursor: pointer;
     margin-top: 12px;
   }
+
   .add:hover {
     background: #C2B280;
+  }
+
+  /* Description Box */
+  .description-box {
+    background: #fff;
+    padding: 40px;
+    margin: 60px auto 0 auto;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    max-width: 900px;
+  }
+
+  .description-box h3 {
+    color: #D6A7A1;
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+
+  .description-box p, .description-box li {
+    color: #333;
+    line-height: 1.6;
+    font-size: 15px;
+  }
+
+  .description-box ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin-top: 0;
   }
 </style>
 </head>
 <body>
   <div class="card">
     <!-- Product Name -->
-    <h2>Licorice (Mulethi), Almond & Goatmilk Soap 
-</h2>
+    <h2>Licorice (Mulethi), Almond & Goatmilk Soap</h2>
 
     <!-- Price -->
     <div class="price-box">
@@ -105,17 +141,61 @@
     </div>
   </div>
 
+  <!-- Description Section -->
+  <div class="description-box">
+    <h3>About this Product</h3>
+    <p>
+      Indulge your skin in a creamy, brightening cleanse with our <strong>Licorice (Mulethi), Almond & Goatmilk Soap</strong>. 
+      Crafted with skin-loving botanicals and nourishing oils, this rich bar helps even out skin tone, reduce dullness, 
+      and leave your skin feeling soft, supple, and naturally radiant.
+    </p>
+
+    <h3>Key Benefits</h3>
+    <ul>
+      <li><strong>Skin Brightening:</strong> Licorice root extract helps fade dark spots and promotes a clearer, glowing complexion.</li>
+      <li><strong>Deep Nourishment:</strong> Almond oil moisturizes and restores elasticity, keeping skin silky and smooth.</li>
+      <li><strong>Gentle Hydration:</strong> Fresh goat milk soothes dry, sensitive skin and maintains a healthy moisture balance.</li>
+      <li><strong>Soft Cleansing:</strong> Creamy lather removes impurities without stripping natural oils.</li>
+      <li><strong>Natural Glow:</strong> A warm, nutty-sweet aroma with hints of earthy licorice leaves skin refreshed and lightly scented.</li>
+    </ul>
+
+    <h3>Perfect For</h3>
+    <ul>
+      <li>Dull, uneven, or sensitive skin</li>
+      <li>Daily brightening and hydration</li>
+      <li>Those seeking a soft, creamy cleansing bar</li>
+    </ul>
+
+    <h3>How to Use</h3>
+    <p>
+      Lather the bar between your hands or on a soft sponge. Massage gently onto damp skin and rinse off.  
+      <em>Tip: Keep the soap on a dry surface between uses to make it last longer.</em>
+    </p>
+
+    <h3>Ingredients</h3>
+    <p>
+      Saponified oils of coconut, olive & castor • Licorice (Mulethi) extract • Sweet almond oil • Goat milk • Vitamin E • Natural fragrance  
+      <br><strong>Free from:</strong> Sulfates, parabens, silicones, and artificial dyes.
+    </p>
+
+    <h3>MIA Organic Promise</h3>
+    <p>
+      Handcrafted in small batches with pure, cruelty-free, and 100% natural ingredients — our soaps are made to love your skin and the planet.  
+      Every bar is a gentle reminder of care, comfort, and conscious beauty.
+    </p>
+  </div>
+
 <script>
 /* ---------- Add to Cart ---------- */
 function addToCartAndGo(){
-  const name = 'Licorice (Mulethi), Almond & Goatmilk Soap ';
+  const name = 'Licorice (Mulethi), Almond & Goatmilk Soap';
   const price = 585;
   let cart = JSON.parse(localStorage.getItem('store_cart')) || [];
   let existing = cart.find(i => i.name === name);
   if(existing) existing.qty++;
   else cart.push({ id:'p1', name, price, qty:1 });
   localStorage.setItem('store_cart', JSON.stringify(cart));
-  window.location.href = './'; // cart page (adjust if needed)
+  window.location.href = './';
 }
 
 /* ---------- Live viewers (3–18) ---------- */
@@ -127,7 +207,7 @@ setInterval(updateViewers, 5000);
 updateViewers();
 
 /* ---------- Stock counter ---------- */
-let stock = 12; // set stock number here
+let stock = 24;
 function updateStock() {
   let text = "";
   if (stock > 20) text = "In stock: " + stock + "+ available";
@@ -138,5 +218,8 @@ function updateStock() {
 }
 updateStock();
 </script>
+</body>
+</html>
+
 </body>
 </html>
