@@ -1,0 +1,215 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Product — HydraGlow HA Serum (10% Hyaluronic Acid)</title>
+<style>
+  body {
+    font-family: Segoe UI, Arial;
+    margin: 0;
+    background: #faf9f6;
+  }
+
+  .card {
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 420px;
+    margin: 40px auto;
+    text-align: center;
+  }
+
+  h2 {
+    margin: 0 0 12px;
+    color: #000;
+  }
+
+  /* Pricing styles */
+  .price-box {
+    margin-bottom: 12px;
+  }
+  .old-price {
+    color: #999;
+    text-decoration: line-through;
+    margin-right: 8px;
+    font-size: 16px;
+  }
+  .new-price {
+    font-weight: 700;
+    font-size: 20px;
+    color: #3A87A6;
+  }
+
+  /* Stock + viewers */
+  .bottom-info {
+    margin-top: 15px;
+    text-align: left;
+  }
+  .stock {
+    font-weight: bold;
+    margin: 8px 0;
+    color: #333;
+  }
+  .viewers {
+    color: #333;
+    font-size: 14px;
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Add to Cart */
+  .add {
+    background: #A7C8D6;
+    color: #fff;
+    border: 0;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 12px;
+    font-weight: 600;
+  }
+  .add:hover {
+    background: #8EB7C8;
+  }
+
+  /* Description section */
+  .description {
+    background: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 40px 8%;
+    border-radius: 0;
+    font-size: 14px;
+    color: #444;
+    line-height: 1.7;
+    margin-top: 60px;
+    box-shadow: 0 -1px 6px rgba(0,0,0,0.05);
+  }
+  .description h3 {
+    margin-top: 0;
+    color: #3A87A6;
+    font-size: 18px;
+  }
+  .description ul {
+    padding-left: 18px;
+    margin-top: 6px;
+  }
+  .description li {
+    margin-bottom: 4px;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <!-- Product Name -->
+    <h2>HydraGlow HA Serum (10% Hyaluronic Acid)</h2>
+
+    <!-- Price -->
+    <div class="price-box">
+      <span class="old-price">Rs. 1970</span>
+      <span class="new-price">Rs. 1773</span>
+    </div>
+
+    <!-- ⭐ Rating + Reviews -->
+    <div style="display: flex; justify-content: center; margin: 8px 0;">
+      <div style="display: flex; align-items: center; gap: 4px; font-size: 20px; line-height: 1;">
+        <span style="color: #D4AF37;">★</span>
+        <span style="color: #D4AF37;">★</span>
+        <span style="color: #D4AF37;">★</span>
+        <span style="color: #D4AF37;">★</span>
+        <span style="color: #D4AF37;">★</span>
+        <span style="font-size: 14px; color: #7A7262;">(7)</span>
+      </div>
+    </div>
+
+    <!-- Add to Cart -->
+    <button class="add" onclick="addToCartAndGo()">Add to Cart</button>
+
+    <!-- Left aligned info -->
+    <div class="bottom-info">
+      <div class="stock" id="stockStatus">Checking stock...</div>
+      <div class="viewers"><span style="font-size:16px;">👁</span> <span id="viewersCount">0</span></div>
+    </div>
+  </div>
+
+  <!-- Description Section -->
+  <div class="description">
+    <h3>About this Product</h3>
+    <p>
+      Meet your daily dose of hydration — the <strong>HydraGlow HA Serum</strong> combines <strong>10% pure Hyaluronic Acid</strong> with botanical humectants to deeply quench, plump, and smooth your skin.  
+      This ultra-lightweight formula instantly absorbs to restore moisture balance, giving you that fresh, dewy, glass-skin glow.
+    </p>
+
+    <h3>Key Benefits</h3>
+    <ul>
+      <li><strong>Deep Hydration:</strong> Multi-molecular HA locks in moisture on multiple layers of the skin.</li>
+      <li><strong>Plumps & Smooths:</strong> Reduces fine lines and boosts skin elasticity for a supple look.</li>
+      <li><strong>Skin Barrier Support:</strong> Restores hydration to prevent dryness and tightness.</li>
+      <li><strong>Instant Glow:</strong> Leaves skin radiant, glassy, and visibly refreshed.</li>
+      <li><strong>Lightweight Formula:</strong> Non-sticky, non-greasy, perfect under moisturizer or makeup.</li>
+    </ul>
+
+    <h3>Perfect For</h3>
+    <ul>
+      <li>All skin types, especially dry and dehydrated skin</li>
+      <li>Daily AM & PM skincare routine</li>
+      <li>Those who want a natural dewy glow</li>
+    </ul>
+
+    <h3>How to Use</h3>
+    <p>
+      Apply 3–4 drops to clean, slightly damp skin.  
+      Gently pat until absorbed and follow with moisturizer or sunscreen.  
+      <em>Tip:</em> Use twice daily for best results.
+    </p>
+
+    <h3>Ingredients</h3>
+    <p>
+      Aqua • Sodium Hyaluronate (10%) • Panthenol (Vitamin B5) • Allantoin 
+      <br><strong>Free from:</strong> Alcohol, parabens, silicones, artificial fragrance, and dyes.
+    </p>
+
+    <h3>MIA Organic Promise</h3>
+    <p>
+      Powered by science, perfected by nature — our <strong>HydraGlow HA Serum</strong> is clean, cruelty-free, and vegan.  
+      It’s your one-step solution to lasting hydration, plumper texture, and a luminous, healthy glow.
+    </p>
+  </div>
+
+<script>
+/* ---------- Add to Cart ---------- */
+function addToCartAndGo(){
+  const name = 'HydraGlow HA Serum (10% Hyaluronic Acid)';
+  const price = 1773;
+  let cart = JSON.parse(localStorage.getItem('store_cart')) || [];
+  let existing = cart.find(i => i.name === name);
+  if(existing) existing.qty++;
+  else cart.push({ id:'sr1', name, price, qty:1 });
+  localStorage.setItem('store_cart', JSON.stringify(cart));
+  window.location.href = './'; // cart page
+}
+
+/* ---------- Live viewers (3–18) ---------- */
+function updateViewers() {
+  const viewers = Math.floor(Math.random() * (18 - 3 + 1)) + 3;
+  document.getElementById("viewersCount").innerText = viewers;
+}
+setInterval(updateViewers, 5000);
+updateViewers();
+
+/* ---------- Stock counter ---------- */
+let stock = 68;
+function updateStock() {
+  let text = "";
+  if (stock > 20) text = "In stock: " + stock + "+ available";
+  else if (stock > 5) text = "Limited stock: only " + stock + " left!";
+  else if (stock > 0) text = "⚠️ Hurry! Only " + stock + " left — running out!";
+  else text = "❌ Out of stock";
+  document.getElementById("stockStatus").innerText = text;
+}
+updateStock();
+</script>
+</body>
+</html>
