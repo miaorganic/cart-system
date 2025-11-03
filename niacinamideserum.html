@@ -3,41 +3,45 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Product — Radiance B3 Serum (10% Niacinamide)</title>
+<title>Product — Radiance B3 Serum (Niacinamide 10%)</title>
 <style>
   body {
     font-family: Segoe UI, Arial;
     margin: 0;
     background: #faf9f6;
+    padding: 20px;
+    overflow-x: hidden;
   }
 
   .card {
     padding: 20px;
     border-radius: 10px;
     max-width: 420px;
-    margin: 40px auto;
+    margin: auto;
     text-align: center;
   }
 
   h2 {
     margin: 0 0 12px;
-    color: #D6A7A1; /* pink heading */
+    color: #000;
   }
 
   /* Pricing styles */
   .price-box {
     margin-bottom: 12px;
   }
+
   .old-price {
     color: #999;
     text-decoration: line-through;
     margin-right: 8px;
     font-size: 16px;
   }
+
   .new-price {
     font-weight: 700;
     font-size: 20px;
-    color: #D6A7A1; /* pink price */
+    color: #c44;
   }
 
   /* Stock + viewers */
@@ -45,11 +49,13 @@
     margin-top: 15px;
     text-align: left;
   }
+
   .stock {
     font-weight: bold;
     margin: 8px 0;
     color: #333;
   }
+
   .viewers {
     color: #333;
     font-size: 14px;
@@ -59,7 +65,6 @@
     gap: 6px;
   }
 
-  /* Add to Cart */
   .add {
     background: #D6A7A1;
     color: #fff;
@@ -68,36 +73,38 @@
     border-radius: 8px;
     cursor: pointer;
     margin-top: 12px;
-    font-weight: 600;
   }
+
   .add:hover {
     background: #C2B280;
   }
 
-  /* Description section */
-  .description {
+  /* Description Box */
+  .description-box {
     background: #fff;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 40px 8%;
-    border-radius: 0;
-    font-size: 14px;
-    color: #444;
-    line-height: 1.7;
-    margin-top: 60px;
-    box-shadow: 0 -1px 6px rgba(0,0,0,0.05);
+    padding: 40px;
+    margin: 60px auto 0 auto;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    max-width: 900px;
   }
-  .description h3 {
+
+  .description-box h3 {
+    color: #D6A7A1;
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+
+  .description-box p, .description-box li {
+    color: #333;
+    line-height: 1.6;
+    font-size: 15px;
+  }
+
+  .description-box ul {
+    list-style: disc;
+    padding-left: 20px;
     margin-top: 0;
-    color: #D6A7A1; /* pink headings */
-    font-size: 18px;
-  }
-  .description ul {
-    padding-left: 18px;
-    margin-top: 6px;
-  }
-  .description li {
-    margin-bottom: 4px;
   }
 </style>
 </head>
