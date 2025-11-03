@@ -9,6 +9,7 @@
     font-family: Segoe UI, Arial;
     margin: 0;
     background: #faf9f6;
+    overflow-x: hidden; /* ✅ Prevent horizontal scrolling */
   }
 
   .card {
@@ -74,30 +75,30 @@
     background: #C28F8A;
   }
 
-  /* Description styling */
+  /* Description styling — matched to Licorice page */
   .description {
     background: #fff;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 40px 8%;
-    border-radius: 0;
-    font-size: 14px;
+    max-width: 700px; /* ✅ center wide box */
+    margin: 80px auto;
+    padding: 40px 50px;
+    border-radius: 10px;
+    font-size: 15px;
     color: #444;
     line-height: 1.7;
-    margin-top: 60px; /* space above box */
-    box-shadow: 0 -1px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 0 8px rgba(0,0,0,0.06);
   }
   .description h3 {
-    margin-top: 0;
-    color: #D67B84; /* warm pink headings */
+    margin-top: 28px;
+    margin-bottom: 10px;
+    color: #D67B84;
     font-size: 18px;
   }
   .description ul {
-    padding-left: 18px;
+    padding-left: 20px;
     margin-top: 6px;
   }
   .description li {
-    margin-bottom: 4px;
+    margin-bottom: 6px;
   }
 </style>
 </head>
@@ -203,7 +204,7 @@ setInterval(updateViewers, 5000);
 updateViewers();
 
 /* ---------- Stock counter ---------- */
-let stock = 15; // adjust stock
+let stock = 15;
 function updateStock() {
   let text = "";
   if (stock > 20) text = "In stock: " + stock + "+ available";
@@ -216,3 +217,4 @@ updateStock();
 </script>
 </body>
 </html>
+
