@@ -7,22 +7,24 @@
 <style>
   body {
     font-family: Segoe UI, Arial;
-    margin: 20px;
-    background: #faf9f6; /* page background */
+    margin: 0;
+    background: #faf9f6;
   }
+
   .card {
     padding: 20px;
     border-radius: 10px;
     max-width: 420px;
-    margin: auto;
+    margin: 40px auto;
     text-align: center;
   }
+
   h2 {
     margin: 0 0 12px;
-    color: #000; /* black heading */
+    color: #000;
   }
 
-  /* Pricing */
+  /* Pricing styles */
   .price-box {
     margin-bottom: 12px;
   }
@@ -35,7 +37,7 @@
   .new-price {
     font-weight: 700;
     font-size: 20px;
-    color: #D6A7A1; /* warm pink accent */
+    color: #C75C6B;
   }
 
   /* Stock + viewers */
@@ -57,7 +59,7 @@
     gap: 6px;
   }
 
-  /* Add to cart button */
+  /* Add to cart */
   .add {
     background: #D6A7A1;
     color: #fff;
@@ -66,30 +68,36 @@
     border-radius: 8px;
     cursor: pointer;
     margin-top: 12px;
+    font-weight: 600;
   }
   .add:hover {
-    background: #C2B280;
+    background: #C28F8A;
   }
 
-  /* Description box */
-  .desc-box {
+  /* Description styling */
+  .description {
     background: #fff;
-    border-radius: 12px;
-    padding: 24px;
-    max-width: 100%;
-    width: calc(100% - 40px);
-    margin: 60px auto 0 auto; /* three-line gap above */
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  }
-  .desc-box h3 {
-    color: #D6A7A1;
-    margin-top: 0;
-    margin-bottom: 10px;
-  }
-  .desc-box p {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 40px 8%;
+    border-radius: 0;
+    font-size: 14px;
     color: #444;
     line-height: 1.7;
-    font-size: 15px;
+    margin-top: 60px;
+    box-shadow: 0 -1px 6px rgba(0,0,0,0.05);
+  }
+  .description h3 {
+    margin-top: 0;
+    color: #D67B84;
+    font-size: 18px;
+  }
+  .description ul {
+    padding-left: 18px;
+    margin-top: 6px;
+  }
+  .description li {
+    margin-bottom: 4px;
   }
 </style>
 </head>
@@ -104,7 +112,7 @@
       <span class="new-price">Rs. 585</span>
     </div>
 
-    <!-- ⭐ Rating -->
+    <!-- ⭐ Rating + Reviews -->
     <div style="display: flex; justify-content: center; margin: 8px 0;">
       <div style="display: flex; align-items: center; gap: 4px; font-size: 20px; line-height: 1;">
         <span style="color: #D4AF37;">★</span>
@@ -112,6 +120,7 @@
         <span style="color: #D4AF37;">★</span>
         <span style="color: #D4AF37;">★</span>
         <span style="color: #D4AF37;">★</span>
+        </span>
         <span style="font-size: 14px; color: #7A7262;">(11)</span>
       </div>
     </div>
@@ -126,12 +135,48 @@
     </div>
   </div>
 
-  <!-- Full-width description box -->
-  <div class="desc-box">
-    <h3>Purifying. Cooling. Healing.</h3>
-    <p>Meet our <strong>Neem & Aloe Vera Soap</strong> — your natural skin detox bar. Packed with neem’s antibacterial power and aloe vera’s soothing touch, it helps calm acne, reduce inflammation, and gently cleanse without stripping moisture.</p>
-    <p>This refreshing bar balances oil production, purifies pores, and leaves your skin feeling clean, cool, and revived after every wash. Especially loved by those with acne-prone or sensitive skin.</p>
-    <p><strong>Key Ingredients:</strong> Neem Extract, Aloe Vera Gel, Coconut Oil, Olive Oil, Shea Butter, Tea Tree Essential Oil.</p>
+  <!-- Description Section -->
+  <div class="description">
+    <h3>About this Product</h3>
+    <p>
+      Purify, calm, and renew your skin with the refreshing blend of <strong>Neem</strong> and <strong>Aloe Vera</strong>. 
+      Our <strong>Neem & Aloe Vera Soap</strong> is a gentle yet powerful detox bar crafted to cleanse deeply, 
+      balance excess oil, and soothe irritation — leaving your skin cool, clear, and comfortably soft.
+    </p>
+
+    <h3>Key Benefits</h3>
+    <ul>
+      <li><strong>Clarifying Cleanse:</strong> Neem helps draw out impurities, fights acne-causing bacteria, and reduces breakouts.</li>
+      <li><strong>Cooling Calm:</strong> Aloe Vera soothes redness and inflammation, providing instant relief to sensitive or irritated skin.</li>
+      <li><strong>Oil Balance:</strong> Keeps skin clean and fresh without over-drying.</li>
+      <li><strong>Nourishing Oils:</strong> Coconut, olive, and castor oils restore moisture and softness.</li>
+      <li><strong>Refreshing Herbal Aroma:</strong> A crisp, earthy scent with subtle green notes that revive your senses.</li>
+    </ul>
+
+    <h3>Perfect For</h3>
+    <ul>
+      <li>Oily or acne-prone skin</li>
+      <li>Sensitive or inflamed skin</li>
+      <li>Those who prefer cooling, herbal freshness</li>
+    </ul>
+
+    <h3>How to Use</h3>
+    <p>
+      Lather between your hands or on a loofah, apply gently on damp skin, and rinse thoroughly.  
+      <em>Tip: Allow the bar to dry between uses to prolong its life and freshness.</em>
+    </p>
+
+    <h3>Ingredients</h3>
+    <p>
+      Saponified oils of coconut, olive & castor • Neem extract • Aloe vera gel • Shea butter • Tea tree essential oil • Vitamin E • Natural fragrance  
+      <br><strong>Free from:</strong> Sulfates, parabens, silicones, and artificial dyes.
+    </p>
+
+    <h3>MIA Organic Promise</h3>
+    <p>
+      Handcrafted in small batches, cruelty-free, and 100% natural — our soaps are pure, purposeful, and planet-friendly.  
+      Each bar is a soothing ritual of purity, balance, and renewal.
+    </p>
   </div>
 
 <script>
@@ -142,9 +187,9 @@ function addToCartAndGo(){
   let cart = JSON.parse(localStorage.getItem('store_cart')) || [];
   let existing = cart.find(i => i.name === name);
   if(existing) existing.qty++;
-  else cart.push({ id:'p3', name, price, qty:1 });
+  else cart.push({ id:'p2', name, price, qty:1 });
   localStorage.setItem('store_cart', JSON.stringify(cart));
-  window.location.href = './'; // cart page link
+  window.location.href = './';
 }
 
 /* ---------- Live viewers ---------- */
@@ -156,7 +201,7 @@ setInterval(updateViewers, 5000);
 updateViewers();
 
 /* ---------- Stock counter ---------- */
-let stock = 12;
+let stock = 30;
 function updateStock() {
   let text = "";
   if (stock > 20) text = "In stock: " + stock + "+ available";
