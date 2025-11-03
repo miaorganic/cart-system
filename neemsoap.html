@@ -8,20 +8,21 @@
   body {
     font-family: Segoe UI, Arial;
     margin: 20px;
-    background: #faf9f6; /* whole page same color */
+    background: #faf9f6; /* page background */
   }
   .card {
     padding: 20px;
     border-radius: 10px;
     max-width: 420px;
     margin: auto;
-    text-align: center; /* center align main content */
+    text-align: center;
   }
   h2 {
     margin: 0 0 12px;
+    color: #000; /* black heading */
   }
 
-  /* Pricing styles */
+  /* Pricing */
   .price-box {
     margin-bottom: 12px;
   }
@@ -34,10 +35,10 @@
   .new-price {
     font-weight: 700;
     font-size: 20px;
-    color: #c44;
+    color: #D6A7A1; /* warm pink accent */
   }
 
-  /* Stock + viewers (left aligned separately) */
+  /* Stock + viewers */
   .bottom-info {
     margin-top: 15px;
     text-align: left;
@@ -56,6 +57,7 @@
     gap: 6px;
   }
 
+  /* Add to cart button */
   .add {
     background: #D6A7A1;
     color: #fff;
@@ -67,6 +69,27 @@
   }
   .add:hover {
     background: #C2B280;
+  }
+
+  /* Description box */
+  .desc-box {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    max-width: 100%;
+    width: calc(100% - 40px);
+    margin: 60px auto 0 auto; /* three-line gap above */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  }
+  .desc-box h3 {
+    color: #D6A7A1;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  .desc-box p {
+    color: #444;
+    line-height: 1.7;
+    font-size: 15px;
   }
 </style>
 </head>
@@ -81,7 +104,7 @@
       <span class="new-price">Rs. 585</span>
     </div>
 
-    <!-- ⭐ Rating + Reviews -->
+    <!-- ⭐ Rating -->
     <div style="display: flex; justify-content: center; margin: 8px 0;">
       <div style="display: flex; align-items: center; gap: 4px; font-size: 20px; line-height: 1;">
         <span style="color: #D4AF37;">★</span>
@@ -103,6 +126,14 @@
     </div>
   </div>
 
+  <!-- Full-width description box -->
+  <div class="desc-box">
+    <h3>Purifying. Cooling. Healing.</h3>
+    <p>Meet our <strong>Neem & Aloe Vera Soap</strong> — your natural skin detox bar. Packed with neem’s antibacterial power and aloe vera’s soothing touch, it helps calm acne, reduce inflammation, and gently cleanse without stripping moisture.</p>
+    <p>This refreshing bar balances oil production, purifies pores, and leaves your skin feeling clean, cool, and revived after every wash. Especially loved by those with acne-prone or sensitive skin.</p>
+    <p><strong>Key Ingredients:</strong> Neem Extract, Aloe Vera Gel, Coconut Oil, Olive Oil, Shea Butter, Tea Tree Essential Oil.</p>
+  </div>
+
 <script>
 /* ---------- Add to Cart ---------- */
 function addToCartAndGo(){
@@ -111,12 +142,12 @@ function addToCartAndGo(){
   let cart = JSON.parse(localStorage.getItem('store_cart')) || [];
   let existing = cart.find(i => i.name === name);
   if(existing) existing.qty++;
-  else cart.push({ id:'p1', name, price, qty:1 });
+  else cart.push({ id:'p3', name, price, qty:1 });
   localStorage.setItem('store_cart', JSON.stringify(cart));
-  window.location.href = './'; // cart page (adjust if needed)
+  window.location.href = './'; // cart page link
 }
 
-/* ---------- Live viewers (3–18) ---------- */
+/* ---------- Live viewers ---------- */
 function updateViewers() {
   const viewers = Math.floor(Math.random() * (18 - 3 + 1)) + 3;
   document.getElementById("viewersCount").innerText = viewers;
@@ -125,7 +156,7 @@ setInterval(updateViewers, 5000);
 updateViewers();
 
 /* ---------- Stock counter ---------- */
-let stock = 12; // set stock number here
+let stock = 12;
 function updateStock() {
   let text = "";
   if (stock > 20) text = "In stock: " + stock + "+ available";
