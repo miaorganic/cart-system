@@ -19,6 +19,7 @@
   }
   h2 {
     margin: 0 0 12px;
+    color: #000; /* keep product name black */
   }
 
   /* Pricing styles */
@@ -68,6 +69,31 @@
   .add:hover {
     background: #C2B280;
   }
+
+  /* Description Box */
+  .description-box {
+    background: #fff;
+    padding: 30px;
+    margin-top: 60px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    width: 100%;
+  }
+  .description-box h3 {
+    color: #D6A7A1; /* warm pink headings */
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+  .description-box p, .description-box li {
+    color: #333;
+    line-height: 1.6;
+    font-size: 15px;
+  }
+  .description-box ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin-top: 0;
+  }
 </style>
 </head>
 <body>
@@ -103,6 +129,46 @@
     </div>
   </div>
 
+  <!-- Description Box -->
+  <div class="description-box">
+    <h3>About this Product</h3>
+    <p>
+      Glow naturally with the golden blend of honey and turmeric. Our <b>Honey & Turmeric Glow Soap</b> is a handcrafted bar designed to deeply purify, brighten, and nourish your skin, leaving it radiant, smooth, and beautifully refreshed.
+    </p>
+
+    <h3>Key Benefits</h3>
+    <ul>
+      <li><b>Glow & Brighten:</b> Turmeric helps even out skin tone and adds a natural luminous glow.</li>
+      <li><b>Deep Hydration:</b> Honey locks in moisture and soothes dry, tired skin.</li>
+      <li><b>Antibacterial Power:</b> Naturally purifies and helps prevent breakouts.</li>
+      <li><b>Gentle Exfoliation:</b> Leaves your skin soft, smooth, and clear.</li>
+      <li><b>Soft Herbal Scent:</b> A refreshing blend of earthy turmeric and sweet honey warmth.</li>
+    </ul>
+
+    <h3>Perfect For</h3>
+    <ul>
+      <li>Dull or uneven skin tone</li>
+      <li>Those seeking a natural glow boost</li>
+      <li>Everyday gentle cleansing and radiance</li>
+    </ul>
+
+    <h3>How to Use</h3>
+    <p>
+      Lather the soap between wet hands or on a loofah. Massage gently onto damp skin in circular motions and rinse off. Use daily for visibly glowing, refreshed skin. Store on a dry surface between uses to extend the life of your soap.
+    </p>
+
+    <h3>Ingredients</h3>
+    <p>
+      Saponified oils of coconut, olive & castor • Organic honey • Wild turmeric • Shea butter • Vitamin E • Natural essential oils  
+      <br><b>Free from:</b> Sulfates, parabens, silicones, and artificial dyes.
+    </p>
+
+    <h3>MIA Organic Promise</h3>
+    <p>
+      Handcrafted with love in small batches using clean, cruelty-free ingredients. Our soaps are 100% natural, biodegradable, and made to bring out your skin’s true radiance — one mindful wash at a time.
+    </p>
+  </div>
+
 <script>
 /* ---------- Add to Cart ---------- */
 function addToCartAndGo(){
@@ -111,9 +177,9 @@ function addToCartAndGo(){
   let cart = JSON.parse(localStorage.getItem('store_cart')) || [];
   let existing = cart.find(i => i.name === name);
   if(existing) existing.qty++;
-  else cart.push({ id:'p1', name, price, qty:1 });
+  else cart.push({ id:'p6', name, price, qty:1 });
   localStorage.setItem('store_cart', JSON.stringify(cart));
-  window.location.href = './'; // cart page (adjust if needed)
+  window.location.href = './'; // cart page
 }
 
 /* ---------- Live viewers (3–18) ---------- */
@@ -125,7 +191,7 @@ setInterval(updateViewers, 5000);
 updateViewers();
 
 /* ---------- Stock counter ---------- */
-let stock = 12; // set stock number here
+let stock = 14; // set stock number here
 function updateStock() {
   let text = "";
   if (stock > 20) text = "In stock: " + stock + "+ available";
@@ -138,3 +204,4 @@ updateStock();
 </script>
 </body>
 </html>
+
