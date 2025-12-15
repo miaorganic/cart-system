@@ -3,25 +3,26 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Product — Refreshing Cucumber Foaming Body Scrub</title>
+<title>Product — Refreshing Cucumber Foaming Body Scrub </title>
 <style>
   body {
     font-family: Segoe UI, Arial;
     margin: 20px;
-    background: #faf9f6;
+    background: #faf9f6; /* whole page same color */
   }
   .card {
     padding: 20px;
     border-radius: 10px;
     max-width: 420px;
     margin: auto;
-    text-align: center;
+    text-align: center; /* center align main content */
   }
   h2 {
     margin: 0 0 12px;
-    color: #000;
+    color: #000; /* product name black */
   }
 
+  /* Pricing styles */
   .price-box {
     margin-bottom: 12px;
   }
@@ -37,6 +38,7 @@
     color: #c44;
   }
 
+  /* Stock + viewers (left aligned separately) */
   .bottom-info {
     margin-top: 15px;
     text-align: left;
@@ -56,7 +58,7 @@
   }
 
   .add {
-    background:#D6A7A1;
+    background: #D6A7A1;
     color: #fff;
     border: 0;
     padding: 10px 16px;
@@ -68,15 +70,15 @@
     background: #C2B280;
   }
 
+  /* Description full width */
   .description {
-  background: #fff;
-  padding: 24px;
-  border-radius: 0;        /* remove rounded corners */
-  margin-top: 60px;
-  width: 100%;
-  margin: 0;              /* remove side gaps */
-}
-
+    background: #fff;
+    padding: 24px;
+    border-radius: 10px;
+    margin-top: 60px; /* creates 3 line gap */
+    width: calc(100% - 40px);
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .description h3 {
