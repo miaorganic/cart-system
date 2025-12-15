@@ -1,0 +1,211 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Product — Nila Glow Whitening Body Scrub</title>
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: Segoe UI, Arial;
+    margin: 0;
+    background: #faf9f6;
+  }
+
+  .card {
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 420px;
+    margin: 20px auto;
+    text-align: center;
+  }
+
+  h2 {
+    margin: 0 0 12px;
+    color: #000;
+  }
+
+  .price-box {
+    margin-bottom: 12px;
+  }
+
+  .old-price {
+    color: #999;
+    text-decoration: line-through;
+    margin-right: 8px;
+    font-size: 16px;
+  }
+
+  .new-price {
+    font-weight: 700;
+    font-size: 20px;
+    color: #c44;
+  }
+
+  .add {
+    background: #D6A7A1;
+    color: #fff;
+    border: 0;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 12px;
+  }
+
+  .add:hover {
+    background: #C2B280;
+  }
+
+  .bottom-info {
+    margin-top: 15px;
+    text-align: left;
+  }
+
+  .stock {
+    font-weight: bold;
+    margin: 8px 0;
+    color: #333;
+  }
+
+  .viewers {
+    color: #333;
+    font-size: 14px;
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* FULL-WIDTH DESCRIPTION (NO HORIZONTAL SCROLL) */
+  .description {
+    background: #fff;
+    padding: 32px 20px;
+    margin-top: 60px;
+    width: 100%;
+  }
+
+  .description > * {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .description h3 {
+    color: #D67B84;
+    margin-bottom: 8px;
+  }
+
+  .description p,
+  .description ul {
+    color: #333;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .description ul {
+    list-style-type: "✔ ";
+    padding-left: 20px;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h2>Nila Glow Whitening Body Scrub</h2>
+
+  <div class="price-box">
+    <span class="old-price">Rs. 699</span>
+    <span class="new-price">Rs. 639</span>
+  </div>
+
+  <!-- ⭐ Rating -->
+  <div style="display:flex;justify-content:center;margin:8px 0;">
+    <div style="display:flex;align-items:center;gap:4px;font-size:20px;">
+      <span style="color:#D4AF37;">★</span>
+      <span style="color:#D4AF37;">★</span>
+      <span style="color:#D4AF37;">★</span>
+      <span style="color:#D4AF37;">★</span>
+      <span style="color:#D4AF37;">★</span>
+      <span style="font-size:14px;color:#7A7262;">(11)</span>
+    </div>
+  </div>
+
+  <button class="add" onclick="addToCartAndGo()">Add to Cart</button>
+
+  <div class="bottom-info">
+    <div class="stock" id="stockStatus">Checking stock...</div>
+    <div class="viewers">
+      <span style="font-size:16px;">👁</span>
+      <span id="viewersCount">0</span>
+    </div>
+  </div>
+</div>
+
+<!-- DESCRIPTION -->
+<div class="description">
+  <h3>About This Scrub</h3>
+  <p>Reveal brighter, smoother-looking skin with our <strong>Nila Glow Whitening Body Scrub</strong>. 
+     Enriched with traditional <strong>Nila powder</strong> and gentle exfoliants, this scrub helps 
+     remove dead skin buildup and enhances your skin’s natural radiance for a fresh, even-toned glow.</p>
+
+  <h3>Key Benefits</h3>
+  <ul>
+    <li><strong>Brightening Care:</strong> Nila powder supports a clearer, more radiant look.</li>
+    <li><strong>Gentle Exfoliation:</strong> Removes dull, dead skin cells.</li>
+    <li><strong>Even Appearance:</strong> Helps improve the look of uneven tone.</li>
+    <li><strong>Smooth Finish:</strong> Skin feels soft, polished, and refreshed.</li>
+  </ul>
+
+  <h3>Perfect For</h3>
+  <p>Dull, uneven-looking skin — ideal for elbows, knees, arms, legs, and full body use.</p>
+
+  <h3>How to Use</h3>
+  <p>Apply to damp skin and massage gently in circular motions. 
+     Rinse thoroughly. Use 2–3 times per week for best results.</p>
+
+  <h3>Ingredients</h3>
+  <p>Nila powder • Natural exfoliating beads • Aloe vera • Glycerin • Vitamin E</p>
+
+  <h3>MIA Organic Promise</h3>
+  <p>Carefully handcrafted with traditional and skin-friendly ingredients. 
+     Cruelty-free, sulfate-free, and free from harsh chemicals.</p>
+</div>
+
+<script>
+function addToCartAndGo(){
+  const name = 'Nila Glow Whitening Body Scrub';
+  const price = 1170;
+  let cart = JSON.parse(localStorage.getItem('store_cart')) || [];
+  let existing = cart.find(i => i.name === name);
+  if(existing) existing.qty++;
+  else cart.push({ id:'p7', name, price, qty:1 });
+  localStorage.setItem('store_cart', JSON.stringify(cart));
+  window.location.href = './';
+}
+
+function updateViewers() {
+  const viewers = Math.floor(Math.random() * (18 - 3 + 1)) + 3;
+  document.getElementById("viewersCount").innerText = viewers;
+}
+setInterval(updateViewers, 5000);
+updateViewers();
+
+let stock = 16;
+function updateStock() {
+  let text = "";
+  if (stock > 20) text = "In stock: " + stock + "+ available";
+  else if (stock > 5) text = "Limited stock: only " + stock + " left!";
+  else if (stock > 0) text = "⚠️ Hurry! Only " + stock + " left — running out!";
+  else text = "❌ Out of stock";
+  document.getElementById("stockStatus").innerText = text;
+}
+updateStock();
+</script>
+
+</body>
+</html>
