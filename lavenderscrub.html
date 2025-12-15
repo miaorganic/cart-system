@@ -3,43 +3,58 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Product — Lavender Luxe Exfoliating Scrub</title>
-
+<title>Product — Lavender Luxe Exfoliating Scrub </title>
 <style>
   body {
     font-family: Segoe UI, Arial;
     margin: 20px;
-    background: #faf9f6;
+    background: #faf9f6; /* whole page same color */
   }
-
   .card {
     padding: 20px;
     border-radius: 10px;
     max-width: 420px;
     margin: auto;
-    text-align: center;
+    text-align: center; /* center align main content */
   }
-
   h2 {
     margin: 0 0 12px;
-    color: #000;
+    color: #000; /* product name black */
   }
 
+  /* Pricing styles */
   .price-box {
     margin-bottom: 12px;
   }
-
   .old-price {
     color: #999;
     text-decoration: line-through;
     margin-right: 8px;
     font-size: 16px;
   }
-
   .new-price {
     font-weight: 700;
     font-size: 20px;
     color: #c44;
+  }
+
+  /* Stock + viewers (left aligned separately) */
+  .bottom-info {
+    margin-top: 15px;
+    text-align: left;
+  }
+  .stock {
+    font-weight: bold;
+    margin: 8px 0;
+    color: #333;
+  }
+  .viewers {
+    color: #333;
+    font-size: 14px;
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
 
   .add {
@@ -51,40 +66,19 @@
     cursor: pointer;
     margin-top: 12px;
   }
-
   .add:hover {
     background: #C2B280;
   }
 
-  .bottom-info {
-    margin-top: 15px;
-    text-align: left;
-  }
-
-  .stock {
-    font-weight: bold;
-    margin: 8px 0;
-    color: #333;
-  }
-
-  .viewers {
-    color: #333;
-    font-size: 14px;
-    margin: 8px 0;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  /* FULL-WIDTH DESCRIPTION */
+  /* Description full width */
   .description {
     background: #fff;
     padding: 24px;
-    border-radius: 0;
-    margin-top: 60px;
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
+    border-radius: 10px;
+    margin-top: 60px; /* creates 3 line gap */
+    width: calc(100% - 40px);
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .description h3 {
@@ -92,8 +86,7 @@
     margin-bottom: 8px;
   }
 
-  .description p,
-  .description ul {
+  .description p, .description ul {
     color: #333;
     font-size: 15px;
     line-height: 1.6;
