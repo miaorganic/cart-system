@@ -1,0 +1,191 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Product — Refreshing Cucumber Foaming Body Scrub</title>
+<style>
+  body {
+    font-family: Segoe UI, Arial;
+    margin: 20px;
+    background: #faf9f6;
+  }
+  .card {
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 420px;
+    margin: auto;
+    text-align: center;
+  }
+  h2 {
+    margin: 0 0 12px;
+    color: #000;
+  }
+
+  .price-box {
+    margin-bottom: 12px;
+  }
+  .old-price {
+    color: #999;
+    text-decoration: line-through;
+    margin-right: 8px;
+    font-size: 16px;
+  }
+  .new-price {
+    font-weight: 700;
+    font-size: 20px;
+    color: #c44;
+  }
+
+  .bottom-info {
+    margin-top: 15px;
+    text-align: left;
+  }
+  .stock {
+    font-weight: bold;
+    margin: 8px 0;
+    color: #333;
+  }
+  .viewers {
+    color: #333;
+    font-size: 14px;
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .add {
+    background: #A8CBB7;
+    color: #fff;
+    border: 0;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 12px;
+  }
+  .add:hover {
+    background: #8FB5A0;
+  }
+
+  .description {
+    background: #fff;
+    padding: 24px;
+    border-radius: 10px;
+    margin-top: 60px;
+    width: calc(100% - 40px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .description h3 {
+    color: #6FAF9C;
+    margin-bottom: 8px;
+  }
+
+  .description p, .description ul {
+    color: #333;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .description ul {
+    list-style-type: "✔ ";
+    padding-left: 20px;
+  }
+</style>
+</head>
+
+<body>
+  <div class="card">
+    <h2>Refreshing Cucumber Foaming Body Scrub</h2>
+
+    <div class="price-box">
+      <span class="old-price">Rs. 1,200</span>
+      <span class="new-price">Rs. 1,080</span>
+    </div>
+
+    <!-- ⭐ Rating -->
+    <div style="display: flex; justify-content: center; margin: 8px 0;">
+      <div style="display: flex; align-items: center; gap: 4px; font-size: 20px;">
+        <span style="color:#D4AF37;">★</span>
+        <span style="color:#D4AF37;">★</span>
+        <span style="color:#D4AF37;">★</span>
+        <span style="color:#D4AF37;">★</span>
+        <span style="color:#D4AF37;">★</span>
+        <span style="font-size:14px;color:#7A7262;">(05)</span>
+      </div>
+    </div>
+
+    <button class="add" onclick="addToCartAndGo()">Add to Cart</button>
+
+    <div class="bottom-info">
+      <div class="stock" id="stockStatus">Checking stock...</div>
+      <div class="viewers">
+        <span style="font-size:16px;">👁</span>
+        <span id="viewersCount">0</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="description">
+    <h3>About This Scrub</h3>
+    <p>Revitalize your skin with our <strong>Refreshing Cucumber Foaming Body Scrub</strong>. 
+       Infused with cooling cucumber extract and gentle exfoliants, this airy foaming scrub 
+       cleanses, buffs away dead skin, and leaves your body feeling smooth, fresh, and hydrated.</p>
+
+    <h3>Key Benefits</h3>
+    <ul>
+      <li><strong>Gentle Exfoliation:</strong> Removes dead skin cells for a softer, brighter glow.</li>
+      <li><strong>Cooling Refresh:</strong> Cucumber soothes and calms tired, overheated skin.</li>
+      <li><strong>Foaming Cleanse:</strong> Light foam cleanses without stripping moisture.</li>
+      <li><strong>Silky Finish:</strong> Leaves skin smooth, polished, and refreshed.</li>
+    </ul>
+
+    <h3>Perfect For</h3>
+    <p>All skin types — especially dull, dry, or tired skin in need of a refreshing boost.</p>
+
+    <h3>How to Use</h3>
+    <p>Apply to damp skin. Massage gently in circular motions until foam forms. 
+       Rinse thoroughly. Use 2–3 times a week for best results.</p>
+
+    <h3>Ingredients</h3>
+    <p>Cucumber extract • Mild exfoliating beads • Aloe vera • Glycerin • Vitamin E</p>
+
+    <h3>MIA Organic Promise</h3>
+    <p>Handcrafted with clean, skin-loving ingredients. 
+       Free from parabens, sulfates, harsh chemicals, and cruelty.</p>
+  </div>
+
+<script>
+function addToCartAndGo(){
+  const name = 'Refreshing Cucumber Foaming Body Scrub';
+  const price = 1080;
+  let cart = JSON.parse(localStorage.getItem('store_cart')) || [];
+  let existing = cart.find(i => i.name === name);
+  if(existing) existing.qty++;
+  else cart.push({ id:'p3', name, price, qty:1 });
+  localStorage.setItem('store_cart', JSON.stringify(cart));
+  window.location.href = './';
+}
+
+function updateViewers() {
+  const viewers = Math.floor(Math.random() * (18 - 3 + 1)) + 3;
+  document.getElementById("viewersCount").innerText = viewers;
+}
+setInterval(updateViewers, 5000);
+updateViewers();
+
+let stock = 18;
+function updateStock() {
+  let text = "";
+  if (stock > 20) text = "In stock: " + stock + "+ available";
+  else if (stock > 5) text = "Limited stock: only " + stock + " left!";
+  else if (stock > 0) text = "⚠️ Hurry! Only " + stock + " left — running out!";
+  else text = "❌ Out of stock";
+  document.getElementById("stockStatus").innerText = text;
+}
+updateStock();
+</script>
+</body>
+</html>
